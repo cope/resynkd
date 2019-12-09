@@ -5,8 +5,8 @@ reactive asynchronous web
 Global browserify, watchify
 
 ##### Run
-browserify main.js -o static/bundle.js 
+browserify client.js -o static/bundle.js 
 
 ##### Dev
-watchify main.js -o static/bundle.js 
+watchify client.js -o static/bundle.js 
 
