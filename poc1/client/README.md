@@ -1,12 +1,7 @@
 # resynkd poc1 client
-reactive asynchronous web
+Reactive Asynchronous Web...
 
-#### Requirements
-Global browserify, watchify
+##### Development
+run: ```yarn watch``` 
 
-##### Run
-browserify client.js -o static/bundle.js 
-
-##### Dev
-watchify client.js -o static/bundle.js 
-
+open http://127.0.0.1:1337/

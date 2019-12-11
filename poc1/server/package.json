@@ -4,13 +4,22 @@
 	"description": "reactive asynchronous web",
 	"main": "index.js",
 	"scripts": {
+		"start": "node server.js",
+		"watch": "nodemon server.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "Predrag Stojadinovic",
 	"license": "UNLICENSED",
 	"dependencies": {
 		"fastify": "^2.11.0",
+		"fastify-blipp": "^2.1.0",
+		"fastify-helmet": "^3.0.2",
+		"fastify-websocket": "^1.1.0",
 		"lodash": "^4.17.15",
+		"make-promises-safe": "^5.1.0",
 		"rxjs": "^6.5.3"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.1"
 	}
 }

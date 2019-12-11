@@ -1,2 +1,10 @@
 # resynkd poc1 server
-reactive asynchronous web
+Reactive Asynchronous Web...
+
+##### Build
+```yarn build```
+
+##### Development
+run: ```yarn watch```
+
+open index.html
