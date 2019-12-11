@@ -1,6 +1,16 @@
 'use strict';
 require('make-promises-safe');
 
+// TODO: create a subject per model
+// Then create an onserver per WS connection - on clients "subscribe" request
+const Rx = require('rxjs');
+const subject = new Rx.BehaviorSubject(0);
+let observer = subject.subscribe({
+	next: (v) => console.log('observerA: ' + v)
+});
+subject.next(1);
+observer.unsubscribe();
+
 // Require the framework and instantiate it
 const fastify = require('fastify')({logger: true});
 const fastifyBlipp = require("fastify-blipp");
@@ -15,7 +25,7 @@ fastify.register(fastifyWebsocket);
 fastify.get('/ws', {websocket: true}, (connection, req) => {
 	connection.socket.on('message', message => {
 		console.log('Message from client:', message);
-		connection.socket.send('hi from server')
+		connection.socket.send(JSON.stringify({msg: 'hi from server'}));
 	})
 });
 
