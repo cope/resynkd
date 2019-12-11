@@ -1,7 +1,7 @@
 {
 	"name": "resynkd-poc1-server",
 	"version": "0.0.1",
-	"description": "reactive asynchronous web",
+	"description": "reactive asynchronous web - poc1 server",
 	"main": "index.js",
 	"scripts": {
 		"start": "node server.js",

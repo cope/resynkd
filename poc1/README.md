@@ -1,2 +1,2 @@
 # resynkd poc1
-reactive asynchronous web
+Reactive Asynchronous Web - POC1...

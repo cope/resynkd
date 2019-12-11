@@ -1,2 +1,2 @@
 # resynkd
-reactive asynchronous web
+Reactive Asynchronous Web...

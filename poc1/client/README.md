@@ -1,7 +1,10 @@
 # resynkd poc1 client
 Reactive Asynchronous Web...
 
-##### Development
-run: ```yarn watch``` 
+##### Build
+```yarn build```
 
-open http://127.0.0.1:1337/
+##### Development
+```yarn watch``` 
+
+open index.html
