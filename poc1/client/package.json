@@ -12,8 +12,7 @@
 	"license": "UNLICENSED",
 	"dependencies": {
 		"lodash": "^4.17.15",
-		"rxjs": "^6.5.3",
-		"sql.js": "^1.0.1"
+		"rxjs": "^6.5.3"
 	},
 	"devDependencies": {
 		"browserify": "^16.5.0",
