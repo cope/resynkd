@@ -8,6 +8,8 @@ const {ActionCreators, default: undoable} = reduxUndo;
 // const {applyMiddleware, bindActionCreators, combineReducers, compose, createStore} = redux;
 
 module.exports = function (n) {
+	console.log('\n...demo-redux');
+
 	let counter = (state = 0, action) => {
 		switch (action.type) {
 			case 'INCREMENT':
