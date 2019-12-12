@@ -12,8 +12,8 @@
 	"license": "UNLICENSED",
 	"dependencies": {
 		"lodash": "^4.17.15",
-		"lowdb": "^1.0.0",
-		"rxjs": "^6.5.3"
+		"rxjs": "^6.5.3",
+		"sql.js": "^1.0.1"
 	},
 	"devDependencies": {
 		"browserify": "^16.5.0",
