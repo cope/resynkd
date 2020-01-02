@@ -2,7 +2,7 @@
 
 const rxjs = require('rxjs');
 
-module.exports = function (n) {
+module.exports = function () {
 	console.log('\n...demo-observable');
 
 	const observable = rxjs.Observable.create((observer) => {

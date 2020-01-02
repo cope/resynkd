@@ -2,7 +2,7 @@
 
 const webSocket = require('rxjs/webSocket');
 
-module.exports = function (n) {
+module.exports = function () {
 	console.log('\n...demo-websocket-subject');
 
 	const wssubject = new webSocket.WebSocketSubject('ws://localhost:1337/ws');

@@ -2,7 +2,7 @@
 
 const rxjs = require('rxjs');
 
-module.exports = function (n) {
+module.exports = function () {
 	console.log('\n...demo-subject');
 
 	const dataSubject = new rxjs.BehaviorSubject();

@@ -7,7 +7,7 @@ const {combineReducers, createStore} = redux;
 const {ActionCreators, default: undoable} = reduxUndo;
 // const {applyMiddleware, bindActionCreators, combineReducers, compose, createStore} = redux;
 
-module.exports = function (n) {
+module.exports = function () {
 	console.log('\n...demo-redux');
 
 	let counter = (state = 0, action) => {

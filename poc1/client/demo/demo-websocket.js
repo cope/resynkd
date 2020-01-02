@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (n) {
+module.exports = function () {
 	console.log('\n...demo-websocket');
 
 	const socket = new WebSocket("ws://localhost:1337/ws");
