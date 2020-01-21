@@ -5,7 +5,7 @@ const rxjs = require('rxjs');
 module.exports = function () {
 	console.log('\n...demo-observable');
 
-	const observable = rxjs.Observable.create((observer) => {
+	const observable = new rxjs.Observable((observer) => {
 		observer.next(1);
 		observer.next(2);
 		setTimeout(() => {

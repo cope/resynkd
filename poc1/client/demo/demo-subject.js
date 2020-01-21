@@ -11,6 +11,7 @@ module.exports = function () {
 
 	console.log('- A subscribed...');
 	const dataWatchA = dataSubject.subscribe(val => console.log('A:', val));
+	dataWatchA.next('dataWatchA woohoo');
 
 	setTimeout(() => {
 		console.log('- B subscribed...');
@@ -22,6 +23,7 @@ module.exports = function () {
 		console.log('- sending', val);
 		dataSubject.next(val);
 	});
+	timerSub.next('timerSub woohoo');
 
 	setTimeout(() => {
 		console.log('- unsubscribe');
