@@ -1,14 +1,18 @@
 #!/usr/bin/env node
 'use strict';
 
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 export default class wsSubscribable {
 	private _subscriptions = new Map<string, Subscription>();
 
-	subscribe(observableId: string, subscription: Subscription): wsSubscribable {
-		this._subscriptions.set(observableId, subscription);
-		return this;
+	subscribe(observableId: string): Subscription {
+		let observable = new Observable();
+		let subscription = observable.subscribe();
+
+		// TODO: store observable to call next on we incomming value
+
+		return subscription;
 	}
 
 	unsubscribe(observableId: string): wsSubscribable {
