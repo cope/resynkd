@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 'use strict';
 
-import {Observable} from 'rxjs';
-import wsSubscriber from './wsSubscriber';
+import {NextObserver, Observable} from 'rxjs';
+import wsSubscribable from './wsSubscribable';
 
 export default class wsObservable {
 	private _observables = new Map<string, Observable<any>>();
-	private _subscribers = new Map<string, wsSubscriber>();
+	private _subscribers = new Map<string, wsSubscribable>();
 
 	constructor() {
 	}
@@ -39,10 +39,27 @@ export default class wsObservable {
 					send(msg);
 				}
 			});
-			let subscriber = new wsSubscriber().subscribe(id, subscription);
+			let subscriber = new wsSubscribable().subscribe(id, subscription);
 			this._subscribers.set(socketId, subscriber);
 		}
 		return this;
 	}
 
+}
+
+class wsObserver {
+	private _subscriptions = new Map<string, NextObserver<(value: any) => void>>();
+
+	constructor() {
+	}
+
+	subscription(id: string, nextObserver: NextObserver<(value: any) => void>): wsObserver {
+		this._subscriptions.set(id, nextObserver);
+		return this;
+	}
+
+	message(message: string, send: (n: string) => any): wsObserver {
+
+		return this;
+	}
 }
