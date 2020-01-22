@@ -16,6 +16,7 @@ export default class RsSubscriber {
 
 	public subscribe(subjectId: string, subject: Subject<any>): boolean {
 		if (this._subscriptions.has(subjectId)) throw new Error("Subscription already exists.");
+
 		const subscription = subject.subscribe({
 			next: (value) => this._send(RsMessage('next', this._id, subjectId, value)),
 			error: (err) => this._send(RsMessage('error', this._id, subjectId, err)),

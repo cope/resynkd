@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>wsSubscribable | resynkd - v0.0.1</title>
+	<title>RsSubscriber | resynkd - v0.0.1</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_wssubscribable_.html">&quot;wsSubscribable&quot;</a>
+					<a href="../modules/_rssubscriber_.html">&quot;rsSubscriber&quot;</a>
 				</li>
 				<li>
-					<a href="_wssubscribable_.wssubscribable.html">wsSubscribable</a>
+					<a href="_rssubscriber_.rssubscriber.html">RsSubscriber</a>
 				</li>
 			</ul>
-			<h1>Class wsSubscribable</h1>
+			<h1>Class RsSubscriber</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">wsSubscribable</span>
+						<span class="target">RsSubscriber</span>
 					</li>
 				</ul>
 			</section>
@@ -81,31 +81,128 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_rssubscriber_.rssubscriber.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_wssubscribable_.wssubscribable.html#_subscriptions" class="tsd-kind-icon">_subscriptions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_rssubscriber_.rssubscriber.html#_id" class="tsd-kind-icon">_id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_rssubscriber_.rssubscriber.html#_send" class="tsd-kind-icon">_send</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_rssubscriber_.rssubscriber.html#_subscriptions" class="tsd-kind-icon">_subscriptions</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_wssubscribable_.wssubscribable.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_wssubscribable_.wssubscribable.html#unsubscribe" class="tsd-kind-icon">unsubscribe</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_rssubscriber_.rssubscriber.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_rssubscriber_.rssubscriber.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_rssubscriber_.rssubscriber.html#unsubscribe" class="tsd-kind-icon">unsubscribe</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>RsSubscriber<span class="tsd-signature-symbol">(</span>socketId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, send<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_rssubscriber_.rssubscriber.html" class="tsd-signature-type">RsSubscriber</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cope/resynkd/blob/74232aa/src/rsSubscriber.ts#L10">rsSubscriber.ts:10</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>socketId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>send: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>msg: <span class="tsd-signature-type">string</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_rssubscriber_.rssubscriber.html" class="tsd-signature-type">RsSubscriber</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_id" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _id</h3>
+					<div class="tsd-signature tsd-kind-icon">_id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cope/resynkd/blob/74232aa/src/rsSubscriber.ts#L8">rsSubscriber.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_send" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _send</h3>
+					<div class="tsd-signature tsd-kind-icon">_send<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/cope/resynkd/blob/74232aa/src/rsSubscriber.ts#L9">rsSubscriber.ts:9</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>msg: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_subscriptions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _subscriptions</h3>
 					<div class="tsd-signature tsd-kind-icon">_subscriptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Subscription</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new Map&lt;string, Subscription&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/cope/resynkd/blob/4835748/src/wsSubscribable.ts#L7">wsSubscribable.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/cope/resynkd/blob/74232aa/src/rsSubscriber.ts#L10">rsSubscriber.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -113,28 +210,45 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="subscribe" class="tsd-anchor"></a>
-					<h3>subscribe</h3>
+					<a name="isempty" class="tsd-anchor"></a>
+					<h3>is<wbr>Empty</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">subscribe<span class="tsd-signature-symbol">(</span>observableId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, subscription<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Subscription</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_wssubscribable_.wssubscribable.html" class="tsd-signature-type">wsSubscribable</a></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Empty<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cope/resynkd/blob/4835748/src/wsSubscribable.ts#L9">wsSubscribable.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/cope/resynkd/blob/74232aa/src/rsSubscriber.ts#L36">rsSubscriber.ts:36</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="subscribe" class="tsd-anchor"></a>
+					<h3>subscribe</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">subscribe<span class="tsd-signature-symbol">(</span>subjectId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, subject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Subject</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/cope/resynkd/blob/74232aa/src/rsSubscriber.ts#L17">rsSubscriber.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>observableId: <span class="tsd-signature-type">string</span></h5>
+									<h5>subjectId: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>subscription: <span class="tsd-signature-type">Subscription</span></h5>
+									<h5>subject: <span class="tsd-signature-type">Subject</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_wssubscribable_.wssubscribable.html" class="tsd-signature-type">wsSubscribable</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -142,22 +256,22 @@
 					<a name="unsubscribe" class="tsd-anchor"></a>
 					<h3>unsubscribe</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">unsubscribe<span class="tsd-signature-symbol">(</span>observableId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_wssubscribable_.wssubscribable.html" class="tsd-signature-type">wsSubscribable</a></li>
+						<li class="tsd-signature tsd-kind-icon">unsubscribe<span class="tsd-signature-symbol">(</span>subjectId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_rssubscriber_.rssubscriber.html" class="tsd-signature-type">RsSubscriber</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/cope/resynkd/blob/4835748/src/wsSubscribable.ts#L14">wsSubscribable.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/cope/resynkd/blob/74232aa/src/rsSubscriber.ts#L29">rsSubscriber.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>observableId: <span class="tsd-signature-type">string</span></h5>
+									<h5>subjectId: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_wssubscribable_.wssubscribable.html" class="tsd-signature-type">wsSubscribable</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_rssubscriber_.rssubscriber.html" class="tsd-signature-type">RsSubscriber</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -169,14 +283,29 @@
 					<li class="globals  ">
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
+					<li class="label tsd-is-external">
+						<span>Internals</span>
+					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_resynkd_.html">&quot;resynkd&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_wsobservable_.html">&quot;ws<wbr>Observable&quot;</a>
+						<a href="../modules/_resynkd_types_.html">&quot;resynkd.types&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_rsmessage_.html">&quot;rs<wbr>Message&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_rsobservable_.html">&quot;rs<wbr>Observable&quot;</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_wssubscribable_.html">&quot;ws<wbr>Subscribable&quot;</a>
+						<a href="../modules/_rssubscriber_.html">&quot;rs<wbr>Subscriber&quot;</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_rsobserver_.html">&quot;<wbr>RsObserver&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -185,16 +314,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_wssubscribable_.wssubscribable.html" class="tsd-kind-icon">ws<wbr>Subscribable</a>
+						<a href="_rssubscriber_.rssubscriber.html" class="tsd-kind-icon">Rs<wbr>Subscriber</a>
 						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_rssubscriber_.rssubscriber.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_wssubscribable_.wssubscribable.html#_subscriptions" class="tsd-kind-icon">_subscriptions</a>
+								<a href="_rssubscriber_.rssubscriber.html#_id" class="tsd-kind-icon">_id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_rssubscriber_.rssubscriber.html#_send" class="tsd-kind-icon">_send</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_rssubscriber_.rssubscriber.html#_subscriptions" class="tsd-kind-icon">_subscriptions</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_wssubscribable_.wssubscribable.html#subscribe" class="tsd-kind-icon">subscribe</a>
+								<a href="_rssubscriber_.rssubscriber.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_wssubscribable_.wssubscribable.html#unsubscribe" class="tsd-kind-icon">unsubscribe</a>
+								<a href="_rssubscriber_.rssubscriber.html#subscribe" class="tsd-kind-icon">subscribe</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_rssubscriber_.rssubscriber.html#unsubscribe" class="tsd-kind-icon">unsubscribe</a>
 							</li>
 						</ul>
 					</li>

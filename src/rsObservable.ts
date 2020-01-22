@@ -48,7 +48,7 @@ export default class RsObservable {
 		} else {
 			let subscriber = this._getOrCreateSubscriber(socketId, send);
 			try {
-				subscriber.subscribe(socketId, subject);
+				subscriber.subscribe(subjectId, subject);
 
 			} catch (err) {
 				send(RsMessage('error', socketId, subjectId, {

@@ -18,54 +18,51 @@ describe('All classes exists', () => {
 	});
 });
 
-const subject1 = new AsyncSubject();
+const resynkd1 = new ReSynkd();
+const resynkd2 = new ReSynkd();
+
+const subject1 = new Subject();
 const subject2 = new BehaviorSubject(0);
 const subject3 = new ReplaySubject();
-const subject4 = new Subject();
+const subject4 = new AsyncSubject();
 
-const collect1: number[] = [];
-const receiver = {
-	socketId: 'endPoint1',
-	send: (value: any) => {
-		console.log('\n - receiver::send', value);
-	},
+resynkd1.addSubject('subject1', subject1);
+resynkd1.addSubject('subject2', subject2);
+resynkd1.addSubject('subject3', subject3);
+resynkd1.addSubject('subject4', subject4);
+
+function send1to2(msg: string) {
+	resynkd2.message(msg, send2to1);
+}
+
+function send2to1(msg: string) {
+	resynkd1.message(msg, send1to2);
+}
+
+const collect: number[] = [];
+const receiver1 = {
+	socketId: 'receiver1',
 	next: (value: any) => {
-		console.log('\n - receiver::next', value);
-		collect1.push(value);
+		collect.push(value);
 	}
 };
 
-const sender = {
-	socketId: 'endPoint2',
-	send: (value: any) => {
-		console.log('\n - sender::send', value);
-		receiver.next(value);
-	},
-	next: (value: any) => {
-		console.log('\n - sender::next', value);
-	}
-};
-
-const resynkd = new ReSynkd();
-resynkd.addSubject('subject1', subject1);
-resynkd.addSubject('subject2', subject2);
-resynkd.addSubject('subject3', subject3);
-resynkd.addSubject('subject4', subject4);
-
-resynkd.subscribe({
-	...sender,
+resynkd2.subscribe({
+	...receiver1,
 	subjectId: 'subject1',
+	send: send2to1,
 	observer: {
-		next: sender.send
+		next: receiver1.next
 	}
 });
 
 subject1.next(1);
+subject1.complete();
 
 describe('ReSynkd tests', () => {
 	describe('endPoint1 tests', () => {
 		it('Classes should exist', () => {
-			expect(collect1).to.deep.equal([1]);
+			expect(collect).to.deep.equal([1]);
 		});
 	});
 });
