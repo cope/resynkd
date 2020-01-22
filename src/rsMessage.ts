@@ -2,22 +2,23 @@
 'use strict';
 
 import * as uuidv4 from 'uuid/v4';
+import {RsMessageType, RsMethod} from "./resynkd.types";
 
-type wsMessageType = 'next' | 'subscribe' | 'unsubscribe' | 'subscribeResponse';
+export {RsMessageType};
 
 export default (
-	type: wsMessageType,
+	method: RsMethod,
 	socketId: string,
-	observableId: string,
-	payload: any,
+	subjectId: string,
+	payload: any = '',
 	messageId = uuidv4()
-): any =>
+): string =>
 	JSON.stringify(
 		{
 			rsynkd: {
-				type,
+				method,
 				socketId,
-				observableId,
+				subjectId,
 				payload,
 				messageId
 			}
