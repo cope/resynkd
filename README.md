@@ -15,11 +15,11 @@ websocket.onmessage(message => {
 });
 
 const subject = new Subject();
-resynkd.addSubject('some_subject', subject);
+resynkd.addSubject('unique_subject_name', subject);
 subject.next('value 1');
 subject.next('value 25');
 subject.next('value 17');
-...
+// etc.
 ```
 
 Endpoint2 (Observer)
@@ -34,8 +34,8 @@ websocket.onmessage(message => {
 });
 
 resynkd.subscribe({
-	socketId: 'socket-object-id',       // must be same value on both socket endpoints
-	subjectId: 'some_subject',          
+	socketId: 'socket-id',                      // must be same value on both socket endpoints
+	subjectId: 'unique_subject_name',          
 	send: socketSendMethod,
 	observer: {
         next: (value) => {   // * required!
