@@ -59,10 +59,17 @@ resynkd2.subscribe({
 subject1.next(1);
 subject1.complete();
 
+resynkd2.unsubscribe({
+	...receiver1,
+	subjectId: 'subject1',
+	send: send2to1,
+});
+
 describe('ReSynkd tests', () => {
 	describe('endPoint1 tests', () => {
 		it('Classes should exist', () => {
 			expect(collect).to.deep.equal([1]);
+			expect(resynkd1.message('yei', (msg) => console.log)).to.equal(false);
 		});
 	});
 });

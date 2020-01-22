@@ -18,7 +18,13 @@ export default class RsObservable {
 
 	public message(message: any, send: (msg: string) => any): boolean {
 		let msg = cloneDeep(message);
-		if (isString(msg)) msg = JSON.parse(msg);
+		if (isString(msg)) {
+			try {
+				msg = JSON.parse(msg);
+			} catch (err) {
+				return false;
+			}
+		}
 
 		if (msg.rsynkd) {
 			const {method} = msg.rsynkd;

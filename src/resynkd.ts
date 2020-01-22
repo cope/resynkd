@@ -23,8 +23,7 @@ export default class ReSynkd {
 
 	public message(message: any, send: (msg: string) => any): boolean {
 		if (this._observer.message(message, send)) return true;
-		if (this._observable.message(message, send)) return true;
-		return false;
+		return this._observable.message(message, send);
 	}
 
 	public addSubject(subjectId: string, subject: Subject<any>): boolean {
@@ -36,7 +35,7 @@ export default class ReSynkd {
 	}
 
 	public unsubscribe(unsub: RsUnsubscribe): void {
-		return this._observer.unsubscribe(unsub);
+		this._observer.unsubscribe(unsub);
 	}
 
 }
