@@ -5,10 +5,11 @@ import {Observable, Subscription} from 'rxjs';
 
 export default class wsSubscribable {
 	private _subscriptions = new Map<string, Subscription>();
+	private _promises = new Map<string, Promise<Subscription>>();
 
 	// TODO: maybe use: private _subscribers = new Map<string, wsSubscriber>();
 
-	subscribe(observableId: string): Subscription {
+	async subscribe(observableId: string): Promise<Subscription> {
 		let observable = new Observable();
 		let subscription = observable.subscribe();
 
@@ -17,7 +18,7 @@ export default class wsSubscribable {
 		return subscription;
 	}
 
-	message(observableId: string) {
+	message(socketId: string, message: any) {
 		// TODO...
 	}
 

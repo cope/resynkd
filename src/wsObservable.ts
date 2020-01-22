@@ -8,7 +8,7 @@ import wsMessage from './wsMessage';
 
 export default class wsObservable {
 	private _observables = new Map<string, Observable<any>>();
-	private _subscribers = new Map<string, wsSubscriber>();
+	private _subscribers = new Map<string, wsObservableSubscriber>();
 
 	addObservable(observableId: string, observable: Observable<any>): boolean {
 		if (this._observables.has(observableId)) return false;
@@ -16,7 +16,7 @@ export default class wsObservable {
 		return true;
 	}
 
-	message(socketId: string, message: any, respond: (n: any) => any): wsObservable {
+	message(socketId: string, message: any, send: (n: any) => any): wsObservable {
 		let msg = cloneDeep(message);
 		if (isString(message)) msg = JSON.parse(message);
 
@@ -24,7 +24,7 @@ export default class wsObservable {
 			const {observableId, method} = msg.rsynkd;
 
 			if ('subscribe' === method.toLowerCase()) {
-				this._subscribe(socketId, observableId, respond);
+				this._subscribe(socketId, observableId, send);
 
 			} else if ('unsubscribe' === method.toLowerCase()) {
 				this._unsubscribe(socketId, observableId);
@@ -33,21 +33,21 @@ export default class wsObservable {
 		return this;
 	}
 
-	private _subscribe(socketId: string, observableId: string, respond: (n: any) => any) {
+	private _subscribe(socketId: string, observableId: string, send: (n: any) => any) {
 		let observable = this._observables.get(observableId);
-		if (!observable) return respond('does not exist');
+		if (!observable) return send('does not exist');
 
 		let subscription = observable.subscribe({
 			next: (value) => {
-				respond(wsMessage(socketId, observableId, value));
+				send(wsMessage(socketId, observableId, value));
 			}
 		});
-		let subscriber = new wsSubscriber();
+		let subscriber = new wsObservableSubscriber();
 		if (subscriber.subscribe(observableId, subscription)) {
 			this._subscribers.set(socketId, subscriber);
 
 		} else {
-			respond(wsMessage(socketId, observableId, {error: `Socket ${socketId} already subscribed to ${observableId} observable.`}));
+			send(wsMessage(socketId, observableId, {error: `Socket ${socketId} already subscribed to ${observableId} observable.`}));
 		}
 	}
 
@@ -62,7 +62,7 @@ export default class wsObservable {
 
 }
 
-class wsSubscriber {
+class wsObservableSubscriber {
 	private _subscriptions = new Map<string, Subscription>();
 
 	subscribe(observableId: string, subscription: Subscription): boolean {
@@ -71,7 +71,7 @@ class wsSubscriber {
 		return true;
 	}
 
-	unsubscribe(observableId: string): wsSubscriber {
+	unsubscribe(observableId: string): wsObservableSubscriber {
 		let subscription = this._subscriptions.get(observableId);
 		if (subscription) {
 			subscription.unsubscribe();

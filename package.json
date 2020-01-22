@@ -62,8 +62,10 @@
 	"dependencies": {
 		"@types/lodash": "^4.14.149",
 		"@types/mathjs": "^6.0.2",
+		"@types/uuid": "^3.4.6",
 		"lodash": "^4.17.15",
-		"rxjs": "^6.5.4"
+		"rxjs": "^6.5.4",
+		"uuid": "^3.4.0"
 	},
 	"devDependencies": {
 		"@types/chai": "^4.2.7",
