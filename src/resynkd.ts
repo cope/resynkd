@@ -5,7 +5,7 @@
 // NAMESPACE: Rs
 // -------------
 
-import RsObserver from './RsObserver';
+import RsObserver from './rsObserver';
 import RsObservable from './rsObservable';
 import {Subject, Subscription} from "rxjs";
 import {RsSubscribe, RsUnsubscribe} from "./resynkd.types";

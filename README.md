@@ -1,5 +1,5 @@
-<a href="http://prefko.com">
-  <img alt="prefko" src="https://avatars0.githubusercontent.com/u/112515?s=200" width="100">
+<a href="https://cope.github.io/resynkd/">
+  <img alt="resynkd" src="https://raw.githubusercontent.com/cope/resynkd/master/resynkd.jpg" width="100">
 </a>
 
 # resynkd
