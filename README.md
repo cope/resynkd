@@ -1,4 +1,15 @@
+<a href="http://prefko.com">
+  <img alt="prefko" src="https://avatars0.githubusercontent.com/u/112515?s=200" width="100">
+</a>
+
 # resynkd
+[![build status](https://img.shields.io/travis/cope/resynkd.svg?branch=master)](https://travis-ci.org/cope/resynkd)
+[![codacy](https://img.shields.io/codacy/grade/688be689cad640b89d180b8fee850df7.svg)](https://www.codacy.com/project/cope/resynkd/dashboard)
+[![coverage](https://img.shields.io/coveralls/github/cope/resynkd/master.svg)](https://coveralls.io/github/cope/resynkd?branch=master)
+[![dependencies](https://david-dm.org/cope/resynkd.svg)](https://www.npmjs.com/package/resynkd)
+[![npm](https://img.shields.io/npm/dt/resynkd.svg)](https://www.npmjs.com/package/resynkd)
+[![Greenkeeper badge](https://badges.greenkeeper.io/cope/resynkd.svg)](https://greenkeeper.io/)
+
 Client-Server WebSocket Observable pattern implementation.
 
 ## Usage
