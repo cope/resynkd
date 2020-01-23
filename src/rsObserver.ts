@@ -11,10 +11,11 @@ export default class RsObserver {
 
 	public subscribe(sub: RsSubscribe): Subscription {
 		const {socketId, subjectId, send, observer} = sub;
-		send(RsMessage('subscribe', socketId, subjectId));
 
 		const subject = this._getOrCreateSubject(subjectId);
 		const subscription = subject.subscribe(observer);
+
+		send(RsMessage('subscribe', socketId, subjectId));
 		return subscription;
 	}
 
@@ -51,7 +52,8 @@ export default class RsObserver {
 	}
 
 	private _noSuchObservable(msg: RsMessageType): boolean {
-		return this._complete(msg);
+		msg.rsynkd.payload = 'No such observable available.';
+		return this._error(msg);
 	}
 
 	private _next(msg: RsMessageType): boolean {

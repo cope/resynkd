@@ -22,7 +22,6 @@ export default class RsObservable {
 			try {
 				msg = JSON.parse(msg);
 			} catch (err) {
-				return false;
 			}
 		}
 
@@ -35,6 +34,7 @@ export default class RsObservable {
 					return this._unsubscribe(msg);
 			}
 		}
+
 		return false;
 	}
 
