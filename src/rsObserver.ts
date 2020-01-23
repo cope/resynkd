@@ -11,10 +11,11 @@ export default class RsObserver {
 
 	public subscribe(sub: RsSubscribe): Subscription {
 		const {socketId, subjectId, send, observer} = sub;
-		send(RsMessage('subscribe', socketId, subjectId));
 
 		const subject = this._getOrCreateSubject(subjectId);
 		const subscription = subject.subscribe(observer);
+
+		send(RsMessage('subscribe', socketId, subjectId));
 		return subscription;
 	}
 
