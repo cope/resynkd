@@ -1,4 +1,7 @@
 # resynkd
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/cope/resynkd.svg)](https://greenkeeper.io/)
+
 Client-Server WebSocket Observable pattern implementation.
 
 ## Usage
