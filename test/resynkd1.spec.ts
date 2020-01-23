@@ -41,6 +41,17 @@ describe('ReSynkd Subject tests', () => {
 		}
 	});
 
+	resynkd.subscribe({
+		...receiver1,
+		subjectId: 'subject1_1b',
+		send: rs1_from2to1,
+		observer: {
+			next: (value) => console.log('\nNext [subject1_1b]:', value),
+			error: (err) => console.log('\nError [subject1_1b]:', err),
+			complete: () => console.log('\nComplete [subject1_1b]')
+		}
+	});
+
 	subject1_1.next(1);
 	subject1_1.next(2);
 	subject1_1.error("oops");
