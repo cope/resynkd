@@ -12,7 +12,17 @@
 
 Client-Server WebSocket Observable pattern implementation.
 
-## Usage
+### Motivation
+
+ReSynkd puts together the amazing [RxJS library](https://rxjs.dev) and the [WebSocket protocol](https://en.wikipedia.org/wiki/WebSocket).
+
+Although [RxJS](https://rxjs.dev) provides the [WebSocketSubject](https://rxjs.dev/api/webSocket/WebSocketSubject) class, it seems that this class enables only the server to become an Observable and wanted to have it both ways.
+
+### Documentation
+
+The typedoc documentation is available at https://cope.github.io/resynkd/docs/
+
+### Usage
 
 Endpoint1 (Observable)
 ```javascript
@@ -62,7 +72,7 @@ resynkd.subscribe({
 });
 ```
 
-### WebSocket differences between server and client
+#### WebSocket differences between server and client
 
 If we have a handler method like this:
 ```javascript
@@ -95,7 +105,7 @@ And on the client side, the `socketSendMethod` function is usually: `e.target.se
 
 Putting it all together, this looks like below...
 
-#### Server side
+##### Server side
 ```javascript
 import ReSynkd from "resynkd";
 const resynkd = new ReSynkd();
@@ -109,7 +119,7 @@ fastify.get('/ws', {websocket: true}, (connection, req) => {
 });
 ```
 
-#### Client side
+##### Client side
 ```javascript
 const ReSynkd = require('resynkd');
 const resynkd = new ReSynkd();

@@ -139,8 +139,8 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
 
 "@types/mathjs@^6.0.2":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@types/mathjs/-/mathjs-6.0.3.tgz#f809fed0f880dd3cd1b9435d4added73b01c760f"
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/@types/mathjs/-/mathjs-6.0.4.tgz#0adf7335b27a5385e0dd4f766e0c53931c5c2375"
   dependencies:
     decimal.js "^10.0.0"
 
