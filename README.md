@@ -29,7 +29,7 @@ Endpoint1 (Observable)
 import ReSynkd from "resynkd";
 const resynkd = new ReSynkd();
 websocket.onmessage(message => {
-    let taken = resynkd.message(message, socketSendMethod);
+    let taken = resynkd.message(message, socketSendMethod.bind(socket));    // IMPORTANT: don't forget to bind!
     if(!taken) {
         // do stuff with other messages...
     }
@@ -48,7 +48,7 @@ Endpoint2 (Observer)
 import ReSynkd from "resynkd";
 const resynkd = new ReSynkd();
 websocket.onmessage(message => {
-    let taken = resynkd.message(message, socketSendMethod);
+    let taken = resynkd.message(message, socketSendMethod.bind(socket));    // IMPORTANT: don't forget to bind!
     if(!taken) {
         // do stuff with other messages...
     }
@@ -57,7 +57,7 @@ websocket.onmessage(message => {
 resynkd.subscribe({
 	socketId: 'socket-id',                      // must be same value on both socket endpoints
 	subjectId: 'unique_subject_name',          
-	send: socketSendMethod,
+	send: socketSendMethod.bind(socket),        // IMPORTANT: don't forget to bind!
 	observer: {
         next: (value) => {   // * required!
             // handle value...
@@ -90,7 +90,7 @@ In either case, our handler method must include resynkd processing.
 import ReSynkd from "resynkd";
 const resynkd = new ReSynkd();
 let handler = (message) => {
-    let taken = resynkd.message(message, socketSendMethod);
+    let taken = resynkd.message(message, socketSendMethod.bind(socket));    // IMPORTANT: don't forget to bind!
     if(!taken) {
         // do stuff with other messages...
     }
@@ -111,7 +111,7 @@ import ReSynkd from "resynkd";
 const resynkd = new ReSynkd();
 fastify.get('/ws', {websocket: true}, (connection, req) => {
     connection.socket.on('message', message => {
-        let taken = resynkd.message(message, connection.socket.send);
+        let taken = resynkd.message(message, connection.socket.send.bind(connection.socket));   // IMPORTANT: don't forget to bind!
         if(!taken) {
             // do stuff with other messages...
         }
@@ -127,7 +127,7 @@ const resynkd = new ReSynkd();
 let socket = new WebSocket(YOUR_WS_URI);
 socket.onmessage = (e) => {
     let { data: message } = e;
-    let taken = resynkd.message(message, connection.socket.send);
+    let taken = resynkd.message(message, e.target.send.bind(e.target));     // IMPORTANT: don't forget to bind!
     if(!taken) {
         // do stuff with other messages...
     }
