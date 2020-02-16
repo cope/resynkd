@@ -1,6 +1,6 @@
 {
 	"name": "resynkd",
-	"version": "0.9.4",
+	"version": "0.9.5",
 	"description": "resynkd",
 	"engines": {
 		"node": ">=8.17"
@@ -8,8 +8,10 @@
 	"main": "./lib/resynkd.js",
 	"types": "./lib/resynkd.d.ts",
 	"scripts": {
-		"all": "yarn & yarn clean & yarn build & yarn test & yarn docs",
-		"build": "del /S /Q lib\\* && tsc",
+		"all": "yarn & yarn rmv & yarn mkdir & yarn clean & yarn build & yarn test & yarn docs",
+		"rmv": "del /S /Q lib\\*",
+		"mkdir": "mkdir lib",
+		"build": "tsc",
 		"build:watch": "tsc --watch",
 		"lint": "tslint -p tsconfig.json",
 		"clean": "tslint --config tslint-imports.json --fix --project .",
