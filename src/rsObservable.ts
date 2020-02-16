@@ -6,8 +6,8 @@ import RsSubscriber from "./rsSubscriber";
 import {RsSubject} from "./resynkd.types";
 
 export default class RsObservable {
-	private _subjects = new Map<string, RsSubject<any>>();
-	private _subscribers = new Map<string, RsSubscriber>();
+	private _subjects: Map<string, RsSubject<any>> = new Map<string, RsSubject<any>>();
+	private _subscribers: Map<string, RsSubscriber> = new Map<string, RsSubscriber>();
 
 	public addSubject(subjectId: string, subject: RsSubject<any>): boolean {
 		if (this._subjects.has(subjectId)) throw new Error("Subject already exists.");
@@ -35,6 +35,11 @@ export default class RsObservable {
 		}
 
 		return false;
+	}
+
+	public removeSubscriber(socketId: string): boolean {
+		this._subscribers.delete(socketId);
+		return true;
 	}
 
 	private _getOrCreateSubscriber(socketId: string, send: (msg: string) => any) {

@@ -29,6 +29,10 @@ export default class ReSynkd {
 		return this._observable.addSubject(subjectId, subject);
 	}
 
+	public removeSubscriber(socketId: string): boolean {
+		return this._observable.removeSubscriber(socketId);
+	}
+
 	public subscribe(sub: RsSubscribe): Subscription {
 		return this._observer.subscribe(sub);
 	}
