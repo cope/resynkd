@@ -74,10 +74,8 @@ export default class RsObservable {
 		const {socketId, subjectId} = msg.rsynkd;
 
 		let subscriber = this._subscribers.get(socketId);
-		if (subscriber) {
-			subscriber.unsubscribe(subjectId);
-			if (subscriber.isEmpty()) this._subscribers.delete(socketId);
-		}
+		if (subscriber) subscriber.unsubscribe(subjectId);
+
 		return true;
 	}
 

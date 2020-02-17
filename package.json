@@ -1,6 +1,6 @@
 {
 	"name": "resynkd",
-	"version": "0.9.5",
+	"version": "0.9.6",
 	"description": "resynkd",
 	"engines": {
 		"node": ">=8.17"
