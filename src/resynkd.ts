@@ -20,6 +20,11 @@ export default class ReSynkd {
 		this._observable = new RsObservable();
 	}
 
+	public reset(): void {
+		this._observer.reset();
+		this._observable.reset();
+	}
+
 	public message(message: any, send: (msg: string) => any): boolean {
 		if (this._observer.message(message, send)) return true;
 		return this._observable.message(message, send);

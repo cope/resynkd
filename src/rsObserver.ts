@@ -8,6 +8,10 @@ import {RsSubscribe, RsUnsubscribe} from "./resynkd.types";
 export default class RsObserver {
 	private _subjects = new Map<string, Subject<any>>();
 
+	public reset(): void {
+		this._subjects = new Map<string, Subject<any>>();
+	}
+
 	public subscribe(sub: RsSubscribe): Subscription {
 		const {socketId, subjectId, send, observer} = sub;
 

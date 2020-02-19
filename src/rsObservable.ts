@@ -9,6 +9,11 @@ export default class RsObservable {
 	private _subjects: Map<string, RsSubject<any>> = new Map<string, RsSubject<any>>();
 	private _subscribers: Map<string, RsSubscriber> = new Map<string, RsSubscriber>();
 
+	public reset(): void {
+		this._subjects = new Map<string, RsSubject<any>>();
+		this._subscribers = new Map<string, RsSubscriber>();
+	}
+
 	public addSubject(subjectId: string, subject: RsSubject<any>): boolean {
 		if (this._subjects.has(subjectId)) throw new Error("Subject already exists.");
 		this._subjects.set(subjectId, subject);
