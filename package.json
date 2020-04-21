@@ -73,7 +73,7 @@
 		"@types/chai": "^4.2.7",
 		"@types/mocha": "^5.2.7",
 		"chai": "^4.2.0",
-		"coveralls": "^3.0.9",
+		"coveralls": "^3.0.12",
 		"mocha": "^7.0.0",
 		"nyc": "^15.0.0",
 		"prettier": "^1.19.1",
