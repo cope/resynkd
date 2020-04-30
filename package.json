@@ -67,7 +67,7 @@
 		"@types/uuid": "^3.4.6",
 		"lodash": "^4.17.15",
 		"rxjs": "^6.5.4",
-		"uuid": "^3.4.0"
+		"uuid": "^8.0.0"
 	},
 	"devDependencies": {
 		"@types/chai": "^4.2.7",
