@@ -62,7 +62,7 @@
 	},
 	"homepage": "https://github.com/cope/resynkd#readme",
 	"dependencies": {
-		"@types/lodash": "^4.14.149",
+		"@types/lodash": "^4.14.152",
 		"@types/mathjs": "^6.0.2",
 		"@types/uuid": "^3.4.6",
 		"lodash": "^4.17.15",
