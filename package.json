@@ -75,7 +75,7 @@
 		"chai": "^4.2.0",
 		"coveralls": "^3.0.9",
 		"mocha": "^7.0.0",
-		"nyc": "^15.0.0",
+		"nyc": "^15.1.0",
 		"prettier": "^1.19.1",
 		"sonarjs": "^1.0.0",
 		"source-map-support": "^0.5.16",
