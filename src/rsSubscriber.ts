@@ -1,7 +1,7 @@
 'use strict';
 
-import {Subject, Subscription} from 'rxjs';
-import RsMessage from "./rsMessage";
+import { Subject, Subscription } from 'rxjs';
+import RsMessage from './rsMessage';
 
 export default class RsSubscriber {
 	private _id: string;
@@ -14,12 +14,12 @@ export default class RsSubscriber {
 	}
 
 	public subscribe(subjectId: string, subject: Subject<any>): boolean {
-		if (this._subscriptions.has(subjectId)) throw new Error("Subscription already exists.");
+		if (this._subscriptions.has(subjectId)) throw new Error('Subscription already exists.');
 
 		const subscription = subject.subscribe({
 			next: (value) => this._send(RsMessage('next', this._id, subjectId, value)),
 			error: (err) => this._send(RsMessage('error', this._id, subjectId, err)),
-			complete: () => this._send(RsMessage('complete', this._id, subjectId))
+			complete: () => this._send(RsMessage('complete', this._id, subjectId)),
 		});
 		this._subscriptions.set(subjectId, subscription);
 		return true;

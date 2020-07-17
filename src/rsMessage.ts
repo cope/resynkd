@@ -1,16 +1,16 @@
 'use strict';
 
 import * as uuidv4 from 'uuid/v4';
-import {RsMessageType, RsMethod} from "./resynkd.types";
+import { RsMessageType, RsMethod } from './resynkd.types';
 
-export {RsMessageType};
+export { RsMessageType };
 
 export default (
 	method: RsMethod,
 	socketId: string,
 	subjectId: string,
 	payload: any = '',
-	messageId = uuidv4()
+	messageId = uuidv4(),
 ): string =>
 	JSON.stringify(
 		{
@@ -19,7 +19,7 @@ export default (
 				socketId,
 				subjectId,
 				payload,
-				messageId
-			}
-		}
+				messageId,
+			},
+		},
 	);

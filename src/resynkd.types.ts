@@ -1,6 +1,6 @@
 'use strict';
 
-import {AsyncSubject, BehaviorSubject, NextObserver, ReplaySubject, Subject} from "rxjs";
+import { AsyncSubject, BehaviorSubject, NextObserver, ReplaySubject, Subject } from 'rxjs';
 
 export type RsSubject<T> = AsyncSubject<T> | BehaviorSubject<T> | ReplaySubject<T> | Subject<T>;
 

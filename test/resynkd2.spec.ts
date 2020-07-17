@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 'use strict';
 
-import {expect} from 'chai';
-import {BehaviorSubject} from "rxjs";
-import ReSynkd from "../src/resynkd";
+import { expect } from 'chai';
+import { BehaviorSubject } from 'rxjs';
+import ReSynkd from '../src/resynkd';
 
 describe('ReSynkd BehaviorSubject tests', () => {
 	const resynkd = new ReSynkd();
@@ -24,7 +24,7 @@ describe('ReSynkd BehaviorSubject tests', () => {
 		socketId: 'receiver2',
 		next: (value: any) => {
 			collect2.push(value);
-		}
+		},
 	};
 
 	resynkd.subscribe({
@@ -33,8 +33,8 @@ describe('ReSynkd BehaviorSubject tests', () => {
 		send: rs2_from2to1,
 		observer: {
 			next: receiver2.next,
-			complete: () => ({})
-		}
+			complete: () => ({}),
+		},
 	});
 
 	subject2_2.next(1);

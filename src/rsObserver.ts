@@ -1,9 +1,9 @@
 'use strict';
 
-import {Subject, Subscription} from 'rxjs';
-import RsMessage, {RsMessageType} from "./rsMessage";
-import {cloneDeep, isString} from "lodash";
-import {RsSubscribe, RsUnsubscribe} from "./resynkd.types";
+import { Subject, Subscription } from 'rxjs';
+import RsMessage, { RsMessageType } from './rsMessage';
+import { cloneDeep, isString } from 'lodash';
+import { RsSubscribe, RsUnsubscribe } from './resynkd.types';
 
 export default class RsObserver {
 	private _subjects = new Map<string, Subject<any>>();
@@ -13,7 +13,7 @@ export default class RsObserver {
 	}
 
 	public subscribe(sub: RsSubscribe): Subscription {
-		const {socketId, subjectId, send, observer} = sub;
+		const { socketId, subjectId, send, observer } = sub;
 
 		const subject = this._getOrCreateSubject(subjectId);
 		const subscription = subject.subscribe(observer);
@@ -23,7 +23,7 @@ export default class RsObserver {
 	}
 
 	public unsubscribe(unsub: RsUnsubscribe): void {
-		const {socketId, subjectId, send} = unsub;
+		const { socketId, subjectId, send } = unsub;
 		send(RsMessage('unsubscribe', socketId, subjectId));
 	}
 
@@ -38,7 +38,7 @@ export default class RsObserver {
 		}
 
 		if (msg.rsynkd) {
-			const {method} = msg.rsynkd;
+			const { method } = msg.rsynkd;
 			switch (method) {
 				case 'noSuchObservable':
 					return this._noSuchObservable(msg);
@@ -60,21 +60,21 @@ export default class RsObserver {
 	}
 
 	private _next(msg: RsMessageType): boolean {
-		const {subjectId, payload} = msg.rsynkd;
+		const { subjectId, payload } = msg.rsynkd;
 		let subject = this._subjects.get(subjectId);
 		if (subject) subject.next(payload);
 		return true;
 	}
 
 	private _error(msg: RsMessageType): boolean {
-		const {subjectId, payload} = msg.rsynkd;
+		const { subjectId, payload } = msg.rsynkd;
 		let subject = this._subjects.get(subjectId);
 		if (subject) subject.error(payload);
 		return true;
 	}
 
 	private _complete(msg: RsMessageType): boolean {
-		const {subjectId} = msg.rsynkd;
+		const { subjectId } = msg.rsynkd;
 		let subject = this._subjects.get(subjectId);
 		if (subject) subject.complete();
 		this._subjects.delete(subjectId);

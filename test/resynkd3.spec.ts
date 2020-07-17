@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 'use strict';
 
-import {expect} from 'chai';
-import {ReplaySubject} from "rxjs";
-import ReSynkd from "../src/resynkd";
+import { expect } from 'chai';
+import { ReplaySubject } from 'rxjs';
+import ReSynkd from '../src/resynkd';
 
 describe('ReSynkd ReplaySubject tests', () => {
 	const resynkd = new ReSynkd();
@@ -24,7 +24,7 @@ describe('ReSynkd ReplaySubject tests', () => {
 		socketId: 'receiver3',
 		next: (value: any) => {
 			collect3.push(value);
-		}
+		},
 	};
 
 	subject3_3.next(1);
@@ -36,8 +36,8 @@ describe('ReSynkd ReplaySubject tests', () => {
 		subjectId: 'subject3_3',
 		send: rs3_from2to1,
 		observer: {
-			next: receiver3.next
-		}
+			next: receiver3.next,
+		},
 	});
 
 	subject3_3.next(4);

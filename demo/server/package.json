@@ -1,0 +1,7 @@
+{
+	"name": "resynkd-demo-server",
+	"version": "1.0.0",
+	"main": "server.ts",
+	"author": "Predrag Stojadinovic",
+	"license": "UNLICENSE"
+}

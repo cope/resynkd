@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 'use strict';
 
-import {expect} from 'chai';
-import {Subject} from "rxjs";
-import ReSynkd from "../src/resynkd";
+import { expect } from 'chai';
+import { Subject } from 'rxjs';
+import ReSynkd from '../src/resynkd';
 
 describe('ReSynkd tests', () => {
 	it('ReSynkd should exist', () => expect(ReSynkd).to.exist);
@@ -28,7 +28,7 @@ describe('ReSynkd Subject tests', () => {
 		socketId: 'receiver1',
 		next: (value: any) => {
 			collect1.push(value);
-		}
+		},
 	};
 
 	resynkd.subscribe({
@@ -37,8 +37,8 @@ describe('ReSynkd Subject tests', () => {
 		send: rs1_from2to1,
 		observer: {
 			next: receiver1.next,
-			error: (err) => ({})
-		}
+			error: (err) => ({}),
+		},
 	});
 
 	resynkd.subscribe({
@@ -48,13 +48,13 @@ describe('ReSynkd Subject tests', () => {
 		observer: {
 			next: (value) => console.log('\nNext [subject1_1b]:', value),
 			error: (err) => console.log('\nError [subject1_1b]:', err),
-			complete: () => console.log('\nComplete [subject1_1b]')
-		}
+			complete: () => console.log('\nComplete [subject1_1b]'),
+		},
 	});
 
 	subject1_1.next(1);
 	subject1_1.next(2);
-	subject1_1.error("oops");
+	subject1_1.error('oops');
 
 	resynkd.unsubscribe({
 		...receiver1,
@@ -72,7 +72,7 @@ describe('ReSynkd Subject tests', () => {
 			...receiver1,
 			subjectId: 'subject1_1',
 			send: rs1_from2to1,
-			observer: {next: receiver1.next}
+			observer: { next: receiver1.next },
 		})).to.throw;
 	});
 });

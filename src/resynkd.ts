@@ -6,10 +6,10 @@
 
 import RsObserver from './rsObserver';
 import RsObservable from './rsObservable';
-import {Subject, Subscription} from "rxjs";
-import {RsSubscribe, RsUnsubscribe} from "./resynkd.types";
+import { Subject, Subscription } from 'rxjs';
+import { RsSubscribe, RsUnsubscribe } from './resynkd.types';
 
-export {RsSubscribe, RsUnsubscribe}
+export { RsSubscribe, RsUnsubscribe };
 
 export default class ReSynkd {
 	private _observer: RsObserver;
