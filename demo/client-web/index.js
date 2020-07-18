@@ -9,8 +9,8 @@ const socket = new WebSocket('ws://localhost:3333/ws');
 
 socket.addEventListener('message', (event) => {
 	let message = event.data;
-	let taken = resynkd.message(message, socket.send.bind(socket));
-	if (!taken) {
+	let consumed = resynkd.message(message, socket.send.bind(socket));
+	if (!consumed) {
 		message = JSON.parse(message);
 		console.log(' - client received non-resynkd message:', message);
 		if (message.registered === true) {

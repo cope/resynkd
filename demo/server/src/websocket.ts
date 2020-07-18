@@ -15,8 +15,8 @@ export default (connection: SocketStream) => {
 
 	const { socket } = connection;
 	socket.on('message', async message => {
-		const taken = resynkd.message(message, socket.send.bind(socket));
-		if (!taken) {
+		const consumed = resynkd.message(message, socket.send.bind(socket));
+		if (!consumed) {
 			message = JSON.parse(message);
 			console.log(' - server received non-resynkd message:', JSON.stringify(message));
 
