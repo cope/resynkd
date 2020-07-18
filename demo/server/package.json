@@ -14,15 +14,12 @@
 	"dependencies": {
 		"@types/lodash": "^4.14.136",
 		"@types/node": "^13.5.0",
-		"dotenv": "^8.2.0",
 		"fastify": "^2.11.0",
-		"fastify-blipp": "^2.1.0",
 		"fastify-websocket": "^1.1.0",
 		"lodash": "^4.17.19",
 		"resynkd": "^0.9.7",
 		"ts-node": "^8.6.2",
-		"typescript": "^3.7.5",
-		"uuid": "^3.4.0"
+		"typescript": "^3.7.5"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.2",

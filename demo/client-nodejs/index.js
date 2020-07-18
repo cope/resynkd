@@ -1,14 +1,17 @@
-// IMPORTANT - run: yarn build
-// And then use browserified.js in your browser, instead of this file! See https://github.com/browserify/browserify for more info
-
-const socket = new WebSocket('ws://localhost:3333/ws');
-const socketId = 'web-' + new Date().getTime();
+const ReconnectingWebSocket = require('reconnecting-websocket');
+const webSocketOptions = {
+	WebSocket: require('ws'),
+	connectionTimeout: 1000,
+	maxRetries: 10,
+};
+const socket = new ReconnectingWebSocket('ws://localhost:3333/ws', [], webSocketOptions);
+const socketId = 'node-' + new Date().getTime();
 
 var ReSynkd = require('ReSynkd').default;
 const resynkd = new ReSynkd();
 
-socket.addEventListener('message', (event) => {
-	let message = event.data;
+socket.onmessage = (e) => {
+	let { data: message } = e;
 	let consumed = resynkd.message(message, socket.send.bind(socket));
 	if (!consumed) {
 		message = JSON.parse(message);
@@ -32,16 +35,19 @@ socket.addEventListener('message', (event) => {
 			});
 		}
 	}
-});
+};
 
-socket.addEventListener('open', (event) => {
-	console.log('[WS] Client connected.');
+socket.onopen = async (e) => {
+	console.log('[WS] Connection open.');
 	socket.send(JSON.stringify({
 			socketId: socketId,
 			type: 'register',
-			msg: 'Hello Server from web.',
+			msg: 'Hello Server from NodeJS.',
 		}),
 	);
-});
-socket.addEventListener('closed', (event) => socket.send('Closed?'));
-socket.addEventListener('error', (event) => socket.send('Error?'));
+};
+socket.onerror = (err) => console.error(`[error] ${err.message}`);
+socket.onclose = (e) => {
+	if (e.wasClean) console.log(`[WS] Connection closed cleanly, code=${e.code} reason=${e.reason}`);
+	else console.log('[WS] Connection died');
+};

@@ -2,8 +2,6 @@
 'use strict';
 
 import { AddressInfo } from 'net';
-import * as dotenv from 'dotenv';
-
 import * as Fastify from 'fastify';
 import * as fastifyWebsocket from 'fastify-websocket';
 
@@ -12,8 +10,6 @@ import websocket from './websocket';
 const fastify = Fastify({ logger: true });
 fastify.register(fastifyWebsocket);
 
-dotenv.config();
-
 const addWebSocketListener = (server) => server.get('/ws', { websocket: true }, websocket);
 
 // Start the server
@@ -21,7 +17,7 @@ const startFastifyServer = async () => {
 	try {
 		addWebSocketListener(fastify);
 
-		await fastify.listen(process.env.PORT);
+		await fastify.listen(3333);
 		fastify.log.info(`server listening on ${(fastify.server.address() as AddressInfo).port}`);
 
 	} catch (err) {

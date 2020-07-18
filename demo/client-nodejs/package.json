@@ -1,7 +1,7 @@
 {
 	"version": "1.0.0",
-	"name": "resynkd-demo-client-web",
-	"description": "ReSynkd demo web client",
+	"name": "resynkd-demo-client-nodejs",
+	"description": "ReSynkd demo nodejs client",
 	"author": "Predrag Stojadinovic",
 	"license": "UNLICENSE",
 	"main": "index.html",
@@ -9,7 +9,9 @@
 		"build": "browserify index.js > browserified.js"
 	},
 	"dependencies": {
-		"browserify": "^16.5.1",
-		"resynkd": "^0.9.7"
+		"lodash": "^4.17.19",
+		"reconnecting-websocket": "^4.4.0",
+		"resynkd": "^0.9.7",
+		"ws": "^7.3.1"
 	}
 }

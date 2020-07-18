@@ -27,6 +27,8 @@ export default (connection: SocketStream) => {
 			}
 		}
 	});
+
+	socket.on('close', () => console.log('[WS] Client disconnected.'));
 };
 
 // Send dummy next values:
