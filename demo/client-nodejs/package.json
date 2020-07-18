@@ -6,7 +6,8 @@
 	"license": "UNLICENSE",
 	"main": "index.html",
 	"scripts": {
-		"build": "browserify observer.js > browserified.js"
+		"observe": "node observer.js",
+		"provide": "node observable.js"
 	},
 	"dependencies": {
 		"lodash": "^4.17.19",

@@ -1,3 +1,7 @@
-## mahahklice backend with fastify
+## resynkd demo
 
-See [mahahaklice](https://github.com/cope/mahahaklice) for more info.
+See [resynkd](https://github.com/cope/resynkd) for more info.
+
+### Usage
+
+Follow the simple instructions in each folders README files.
