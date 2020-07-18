@@ -1088,8 +1088,8 @@ tslint-config-prettier@^1.18.0:
   resolved "https://registry.yarnpkg.com/tslint-config-prettier/-/tslint-config-prettier-1.18.0.tgz#75f140bde947d35d8f0d238e0ebf809d64592c37"
 
 tslint-etc@^1.10.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/tslint-etc/-/tslint-etc-1.12.0.tgz#22550db0f9673bceefb6a67285b2561fe8103ac7"
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/tslint-etc/-/tslint-etc-1.13.0.tgz#84550e3d0bfa71fdc17c44ac616625b9f015a557"
   dependencies:
     "@phenomnomnominal/tsquery" "^4.0.0"
     tslib "^2.0.0"

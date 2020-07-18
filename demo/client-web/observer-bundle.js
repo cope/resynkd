@@ -1,48 +1,4 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-// IMPORTANT - run: yarn build
-// And then use browserified.js in your browser, instead of this file! See https://github.com/browserify/browserify for more info
-
-var ReSynkd = require('ReSynkd').default;
-const resynkd = new ReSynkd();
-
-const socketId = new Date().getTime();
-const socket = new WebSocket('ws://localhost:3333/ws');
-
-socket.addEventListener('message', (event) => {
-	let message = event.data;
-	let taken = resynkd.message(message, socket.send.bind(socket));
-	if (!taken) {
-		message = JSON.parse(message);
-		console.log(' - client received non-resynkd message:', message);
-		if (message.registered === true) {
-			resynkd.subscribe({
-				socketId: socketId,
-				subjectId: 'mySub',
-				send: socket.send.bind(socket),
-				observer: {
-					next: (value) => {   // * required!
-						console.log('[ReSynkd] received next message:', value);
-					},
-					error: (err) => {   // * optional
-						console.error('[ReSynkd] error', err);
-					},
-					complete: () => {   // * optional
-						console.error('[ReSynkd] Subject completed.');
-					},
-				},
-			});
-		}
-	}
-});
-
-socket.addEventListener('open', (event) => {
-	console.log('[WS] Client connected.');
-	socket.send(JSON.stringify({ socketId: socketId, type: 'register', msg: 'Hello Server!' }));
-});
-socket.addEventListener('closed', (event) => socket.send('Closed?'));
-socket.addEventListener('error', (event) => socket.send('Error?'));
-
-},{"ReSynkd":2}],2:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const rsObserver_1 = require("./rsObserver");
@@ -76,7 +32,7 @@ class ReSynkd {
 }
 exports.default = ReSynkd;
 
-},{"./rsObservable":4,"./rsObserver":5}],3:[function(require,module,exports){
+},{"./rsObservable":3,"./rsObserver":4}],2:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuidv4 = require("uuid/v4");
@@ -90,7 +46,7 @@ exports.default = (method, socketId, subjectId, payload = '', messageId = uuidv4
     }
 });
 
-},{"uuid/v4":111}],4:[function(require,module,exports){
+},{"uuid/v4":110}],3:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const lodash_1 = require("lodash");
@@ -170,7 +126,7 @@ class RsObservable {
 }
 exports.default = RsObservable;
 
-},{"./rsMessage":3,"./rsSubscriber":6,"lodash":7}],5:[function(require,module,exports){
+},{"./rsMessage":2,"./rsSubscriber":5,"lodash":6}],4:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const rxjs_1 = require("rxjs");
@@ -256,7 +212,7 @@ class RsObserver {
 }
 exports.default = RsObserver;
 
-},{"./rsMessage":3,"lodash":7,"rxjs":8}],6:[function(require,module,exports){
+},{"./rsMessage":2,"lodash":6,"rxjs":7}],5:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const rsMessage_1 = require("./rsMessage");
@@ -290,7 +246,7 @@ class RsSubscriber {
 }
 exports.default = RsSubscriber;
 
-},{"./rsMessage":3}],7:[function(require,module,exports){
+},{"./rsMessage":2}],6:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -17455,7 +17411,7 @@ exports.default = RsSubscriber;
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("./internal/Observable");
@@ -17575,7 +17531,7 @@ exports.NEVER = never_2.NEVER;
 var config_1 = require("./internal/config");
 exports.config = config_1.config;
 
-},{"./internal/AsyncSubject":9,"./internal/BehaviorSubject":10,"./internal/Notification":12,"./internal/Observable":13,"./internal/ReplaySubject":16,"./internal/Scheduler":17,"./internal/Subject":18,"./internal/Subscriber":20,"./internal/Subscription":21,"./internal/config":22,"./internal/observable/ConnectableObservable":23,"./internal/observable/bindCallback":24,"./internal/observable/bindNodeCallback":25,"./internal/observable/combineLatest":26,"./internal/observable/concat":27,"./internal/observable/defer":28,"./internal/observable/empty":29,"./internal/observable/forkJoin":30,"./internal/observable/from":31,"./internal/observable/fromEvent":33,"./internal/observable/fromEventPattern":34,"./internal/observable/generate":35,"./internal/observable/iif":36,"./internal/observable/interval":37,"./internal/observable/merge":38,"./internal/observable/never":39,"./internal/observable/of":40,"./internal/observable/onErrorResumeNext":41,"./internal/observable/pairs":42,"./internal/observable/partition":43,"./internal/observable/race":44,"./internal/observable/range":45,"./internal/observable/throwError":46,"./internal/observable/timer":47,"./internal/observable/using":48,"./internal/observable/zip":49,"./internal/operators/groupBy":52,"./internal/scheduled/scheduled":62,"./internal/scheduler/VirtualTimeScheduler":72,"./internal/scheduler/animationFrame":73,"./internal/scheduler/asap":74,"./internal/scheduler/async":75,"./internal/scheduler/queue":76,"./internal/symbol/observable":78,"./internal/util/ArgumentOutOfRangeError":80,"./internal/util/EmptyError":81,"./internal/util/ObjectUnsubscribedError":83,"./internal/util/TimeoutError":84,"./internal/util/UnsubscriptionError":85,"./internal/util/identity":88,"./internal/util/isObservable":96,"./internal/util/noop":99,"./internal/util/pipe":101}],9:[function(require,module,exports){
+},{"./internal/AsyncSubject":8,"./internal/BehaviorSubject":9,"./internal/Notification":11,"./internal/Observable":12,"./internal/ReplaySubject":15,"./internal/Scheduler":16,"./internal/Subject":17,"./internal/Subscriber":19,"./internal/Subscription":20,"./internal/config":21,"./internal/observable/ConnectableObservable":22,"./internal/observable/bindCallback":23,"./internal/observable/bindNodeCallback":24,"./internal/observable/combineLatest":25,"./internal/observable/concat":26,"./internal/observable/defer":27,"./internal/observable/empty":28,"./internal/observable/forkJoin":29,"./internal/observable/from":30,"./internal/observable/fromEvent":32,"./internal/observable/fromEventPattern":33,"./internal/observable/generate":34,"./internal/observable/iif":35,"./internal/observable/interval":36,"./internal/observable/merge":37,"./internal/observable/never":38,"./internal/observable/of":39,"./internal/observable/onErrorResumeNext":40,"./internal/observable/pairs":41,"./internal/observable/partition":42,"./internal/observable/race":43,"./internal/observable/range":44,"./internal/observable/throwError":45,"./internal/observable/timer":46,"./internal/observable/using":47,"./internal/observable/zip":48,"./internal/operators/groupBy":51,"./internal/scheduled/scheduled":61,"./internal/scheduler/VirtualTimeScheduler":71,"./internal/scheduler/animationFrame":72,"./internal/scheduler/asap":73,"./internal/scheduler/async":74,"./internal/scheduler/queue":75,"./internal/symbol/observable":77,"./internal/util/ArgumentOutOfRangeError":79,"./internal/util/EmptyError":80,"./internal/util/ObjectUnsubscribedError":82,"./internal/util/TimeoutError":83,"./internal/util/UnsubscriptionError":84,"./internal/util/identity":87,"./internal/util/isObservable":95,"./internal/util/noop":98,"./internal/util/pipe":100}],8:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -17636,7 +17592,7 @@ var AsyncSubject = (function (_super) {
 }(Subject_1.Subject));
 exports.AsyncSubject = AsyncSubject;
 
-},{"./Subject":18,"./Subscription":21}],10:[function(require,module,exports){
+},{"./Subject":17,"./Subscription":20}],9:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -17693,7 +17649,7 @@ var BehaviorSubject = (function (_super) {
 }(Subject_1.Subject));
 exports.BehaviorSubject = BehaviorSubject;
 
-},{"./Subject":18,"./util/ObjectUnsubscribedError":83}],11:[function(require,module,exports){
+},{"./Subject":17,"./util/ObjectUnsubscribedError":82}],10:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -17735,7 +17691,7 @@ var InnerSubscriber = (function (_super) {
 }(Subscriber_1.Subscriber));
 exports.InnerSubscriber = InnerSubscriber;
 
-},{"./Subscriber":20}],12:[function(require,module,exports){
+},{"./Subscriber":19}],11:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var empty_1 = require("./observable/empty");
@@ -17813,7 +17769,7 @@ var Notification = (function () {
 }());
 exports.Notification = Notification;
 
-},{"./observable/empty":29,"./observable/of":40,"./observable/throwError":46}],13:[function(require,module,exports){
+},{"./observable/empty":28,"./observable/of":39,"./observable/throwError":45}],12:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var canReportError_1 = require("./util/canReportError");
@@ -17931,7 +17887,7 @@ function getPromiseCtor(promiseCtor) {
     return promiseCtor;
 }
 
-},{"./config":22,"./symbol/observable":78,"./util/canReportError":86,"./util/pipe":101,"./util/toSubscriber":108}],14:[function(require,module,exports){
+},{"./config":21,"./symbol/observable":77,"./util/canReportError":85,"./util/pipe":100,"./util/toSubscriber":107}],13:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var config_1 = require("./config");
@@ -17950,7 +17906,7 @@ exports.empty = {
     complete: function () { }
 };
 
-},{"./config":22,"./util/hostReportError":87}],15:[function(require,module,exports){
+},{"./config":21,"./util/hostReportError":86}],14:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -17985,7 +17941,7 @@ var OuterSubscriber = (function (_super) {
 }(Subscriber_1.Subscriber));
 exports.OuterSubscriber = OuterSubscriber;
 
-},{"./Subscriber":20}],16:[function(require,module,exports){
+},{"./Subscriber":19}],15:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -18112,7 +18068,7 @@ var ReplayEvent = (function () {
     return ReplayEvent;
 }());
 
-},{"./Subject":18,"./SubjectSubscription":19,"./Subscription":21,"./operators/observeOn":56,"./scheduler/queue":76,"./util/ObjectUnsubscribedError":83}],17:[function(require,module,exports){
+},{"./Subject":17,"./SubjectSubscription":18,"./Subscription":20,"./operators/observeOn":55,"./scheduler/queue":75,"./util/ObjectUnsubscribedError":82}],16:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Scheduler = (function () {
@@ -18130,7 +18086,7 @@ var Scheduler = (function () {
 }());
 exports.Scheduler = Scheduler;
 
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -18302,7 +18258,7 @@ var AnonymousSubject = (function (_super) {
 }(Subject));
 exports.AnonymousSubject = AnonymousSubject;
 
-},{"../internal/symbol/rxSubscriber":79,"./Observable":13,"./SubjectSubscription":19,"./Subscriber":20,"./Subscription":21,"./util/ObjectUnsubscribedError":83}],19:[function(require,module,exports){
+},{"../internal/symbol/rxSubscriber":78,"./Observable":12,"./SubjectSubscription":18,"./Subscriber":19,"./Subscription":20,"./util/ObjectUnsubscribedError":82}],18:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -18348,7 +18304,7 @@ var SubjectSubscription = (function (_super) {
 }(Subscription_1.Subscription));
 exports.SubjectSubscription = SubjectSubscription;
 
-},{"./Subscription":21}],20:[function(require,module,exports){
+},{"./Subscription":20}],19:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -18595,7 +18551,7 @@ var SafeSubscriber = (function (_super) {
 }(Subscriber));
 exports.SafeSubscriber = SafeSubscriber;
 
-},{"../internal/symbol/rxSubscriber":79,"./Observer":14,"./Subscription":21,"./config":22,"./util/hostReportError":87,"./util/isFunction":91}],21:[function(require,module,exports){
+},{"../internal/symbol/rxSubscriber":78,"./Observer":13,"./Subscription":20,"./config":21,"./util/hostReportError":86,"./util/isFunction":90}],20:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var isArray_1 = require("./util/isArray");
@@ -18733,7 +18689,7 @@ function flattenUnsubscriptionErrors(errors) {
     return errors.reduce(function (errs, err) { return errs.concat((err instanceof UnsubscriptionError_1.UnsubscriptionError) ? err.errors : err); }, []);
 }
 
-},{"./util/UnsubscriptionError":85,"./util/isArray":89,"./util/isFunction":91,"./util/isObject":95}],22:[function(require,module,exports){
+},{"./util/UnsubscriptionError":84,"./util/isArray":88,"./util/isFunction":90,"./util/isObject":94}],21:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _enable_super_gross_mode_that_will_cause_bad_things = false;
@@ -18754,7 +18710,7 @@ exports.config = {
     },
 };
 
-},{}],23:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -18910,7 +18866,7 @@ var RefCountSubscriber = (function (_super) {
     return RefCountSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Observable":13,"../Subject":18,"../Subscriber":20,"../Subscription":21,"../operators/refCount":57}],24:[function(require,module,exports){
+},{"../Observable":12,"../Subject":17,"../Subscriber":19,"../Subscription":20,"../operators/refCount":56}],23:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19018,7 +18974,7 @@ function dispatchError(state) {
     subject.error(err);
 }
 
-},{"../AsyncSubject":9,"../Observable":13,"../operators/map":53,"../util/canReportError":86,"../util/isArray":89,"../util/isScheduler":98}],25:[function(require,module,exports){
+},{"../AsyncSubject":8,"../Observable":12,"../operators/map":52,"../util/canReportError":85,"../util/isArray":88,"../util/isScheduler":97}],24:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19134,7 +19090,7 @@ function dispatchError(arg) {
     subject.error(err);
 }
 
-},{"../AsyncSubject":9,"../Observable":13,"../operators/map":53,"../util/canReportError":86,"../util/isArray":89,"../util/isScheduler":98}],26:[function(require,module,exports){
+},{"../AsyncSubject":8,"../Observable":12,"../operators/map":52,"../util/canReportError":85,"../util/isArray":88,"../util/isScheduler":97}],25:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -19250,7 +19206,7 @@ var CombineLatestSubscriber = (function (_super) {
 }(OuterSubscriber_1.OuterSubscriber));
 exports.CombineLatestSubscriber = CombineLatestSubscriber;
 
-},{"../OuterSubscriber":15,"../util/isArray":89,"../util/isScheduler":98,"../util/subscribeToResult":107,"./fromArray":32}],27:[function(require,module,exports){
+},{"../OuterSubscriber":14,"../util/isArray":88,"../util/isScheduler":97,"../util/subscribeToResult":106,"./fromArray":31}],26:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var of_1 = require("./of");
@@ -19264,7 +19220,7 @@ function concat() {
 }
 exports.concat = concat;
 
-},{"../operators/concatAll":50,"./of":40}],28:[function(require,module,exports){
+},{"../operators/concatAll":49,"./of":39}],27:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19286,7 +19242,7 @@ function defer(observableFactory) {
 }
 exports.defer = defer;
 
-},{"../Observable":13,"./empty":29,"./from":31}],29:[function(require,module,exports){
+},{"../Observable":12,"./empty":28,"./from":30}],28:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19299,7 +19255,7 @@ function emptyScheduled(scheduler) {
     return new Observable_1.Observable(function (subscriber) { return scheduler.schedule(function () { return subscriber.complete(); }); });
 }
 
-},{"../Observable":13}],30:[function(require,module,exports){
+},{"../Observable":12}],29:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19371,7 +19327,7 @@ function forkJoinInternal(sources, keys) {
     });
 }
 
-},{"../Observable":13,"../operators/map":53,"../util/isArray":89,"../util/isObject":95,"./from":31}],31:[function(require,module,exports){
+},{"../Observable":12,"../operators/map":52,"../util/isArray":88,"../util/isObject":94,"./from":30}],30:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19390,7 +19346,7 @@ function from(input, scheduler) {
 }
 exports.from = from;
 
-},{"../Observable":13,"../scheduled/scheduled":62,"../util/subscribeTo":102}],32:[function(require,module,exports){
+},{"../Observable":12,"../scheduled/scheduled":61,"../util/subscribeTo":101}],31:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19406,7 +19362,7 @@ function fromArray(input, scheduler) {
 }
 exports.fromArray = fromArray;
 
-},{"../Observable":13,"../scheduled/scheduleArray":58,"../util/subscribeToArray":103}],33:[function(require,module,exports){
+},{"../Observable":12,"../scheduled/scheduleArray":57,"../util/subscribeToArray":102}],32:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19472,7 +19428,7 @@ function isEventTarget(sourceObj) {
     return sourceObj && typeof sourceObj.addEventListener === 'function' && typeof sourceObj.removeEventListener === 'function';
 }
 
-},{"../Observable":13,"../operators/map":53,"../util/isArray":89,"../util/isFunction":91}],34:[function(require,module,exports){
+},{"../Observable":12,"../operators/map":52,"../util/isArray":88,"../util/isFunction":90}],33:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19507,7 +19463,7 @@ function fromEventPattern(addHandler, removeHandler, resultSelector) {
 }
 exports.fromEventPattern = fromEventPattern;
 
-},{"../Observable":13,"../operators/map":53,"../util/isArray":89,"../util/isFunction":91}],35:[function(require,module,exports){
+},{"../Observable":12,"../operators/map":52,"../util/isArray":88,"../util/isFunction":90}],34:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19635,7 +19591,7 @@ function dispatch(state) {
     return this.schedule(state);
 }
 
-},{"../Observable":13,"../util/identity":88,"../util/isScheduler":98}],36:[function(require,module,exports){
+},{"../Observable":12,"../util/identity":87,"../util/isScheduler":97}],35:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var defer_1 = require("./defer");
@@ -19647,7 +19603,7 @@ function iif(condition, trueResult, falseResult) {
 }
 exports.iif = iif;
 
-},{"./defer":28,"./empty":29}],37:[function(require,module,exports){
+},{"./defer":27,"./empty":28}],36:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19674,7 +19630,7 @@ function dispatch(state) {
     this.schedule({ subscriber: subscriber, counter: counter + 1, period: period }, period);
 }
 
-},{"../Observable":13,"../scheduler/async":75,"../util/isNumeric":94}],38:[function(require,module,exports){
+},{"../Observable":12,"../scheduler/async":74,"../util/isNumeric":93}],37:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19705,7 +19661,7 @@ function merge() {
 }
 exports.merge = merge;
 
-},{"../Observable":13,"../operators/mergeAll":54,"../util/isScheduler":98,"./fromArray":32}],39:[function(require,module,exports){
+},{"../Observable":12,"../operators/mergeAll":53,"../util/isScheduler":97,"./fromArray":31}],38:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19716,7 +19672,7 @@ function never() {
 }
 exports.never = never;
 
-},{"../Observable":13,"../util/noop":99}],40:[function(require,module,exports){
+},{"../Observable":12,"../util/noop":98}],39:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var isScheduler_1 = require("../util/isScheduler");
@@ -19738,7 +19694,7 @@ function of() {
 }
 exports.of = of;
 
-},{"../scheduled/scheduleArray":58,"../util/isScheduler":98,"./fromArray":32}],41:[function(require,module,exports){
+},{"../scheduled/scheduleArray":57,"../util/isScheduler":97,"./fromArray":31}],40:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19768,7 +19724,7 @@ function onErrorResumeNext() {
 }
 exports.onErrorResumeNext = onErrorResumeNext;
 
-},{"../Observable":13,"../util/isArray":89,"./empty":29,"./from":31}],42:[function(require,module,exports){
+},{"../Observable":12,"../util/isArray":88,"./empty":28,"./from":30}],41:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19811,7 +19767,7 @@ function dispatch(state) {
 }
 exports.dispatch = dispatch;
 
-},{"../Observable":13,"../Subscription":21}],43:[function(require,module,exports){
+},{"../Observable":12,"../Subscription":20}],42:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var not_1 = require("../util/not");
@@ -19826,7 +19782,7 @@ function partition(source, predicate, thisArg) {
 }
 exports.partition = partition;
 
-},{"../Observable":13,"../operators/filter":51,"../util/not":100,"../util/subscribeTo":102}],44:[function(require,module,exports){
+},{"../Observable":12,"../operators/filter":50,"../util/not":99,"../util/subscribeTo":101}],43:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -19919,7 +19875,7 @@ var RaceSubscriber = (function (_super) {
 }(OuterSubscriber_1.OuterSubscriber));
 exports.RaceSubscriber = RaceSubscriber;
 
-},{"../OuterSubscriber":15,"../util/isArray":89,"../util/subscribeToResult":107,"./fromArray":32}],45:[function(require,module,exports){
+},{"../OuterSubscriber":14,"../util/isArray":88,"../util/subscribeToResult":106,"./fromArray":31}],44:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19969,7 +19925,7 @@ function dispatch(state) {
 }
 exports.dispatch = dispatch;
 
-},{"../Observable":13}],46:[function(require,module,exports){
+},{"../Observable":12}],45:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -19987,7 +19943,7 @@ function dispatch(_a) {
     subscriber.error(error);
 }
 
-},{"../Observable":13}],47:[function(require,module,exports){
+},{"../Observable":12}],46:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -20029,7 +19985,7 @@ function dispatch(state) {
     this.schedule(state, period);
 }
 
-},{"../Observable":13,"../scheduler/async":75,"../util/isNumeric":94,"../util/isScheduler":98}],48:[function(require,module,exports){
+},{"../Observable":12,"../scheduler/async":74,"../util/isNumeric":93,"../util/isScheduler":97}],47:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -20065,7 +20021,7 @@ function using(resourceFactory, observableFactory) {
 }
 exports.using = using;
 
-},{"../Observable":13,"./empty":29,"./from":31}],49:[function(require,module,exports){
+},{"../Observable":12,"./empty":28,"./from":30}],48:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -20296,7 +20252,7 @@ var ZipBufferIterator = (function (_super) {
     return ZipBufferIterator;
 }(OuterSubscriber_1.OuterSubscriber));
 
-},{"../../internal/symbol/iterator":77,"../OuterSubscriber":15,"../Subscriber":20,"../util/isArray":89,"../util/subscribeToResult":107,"./fromArray":32}],50:[function(require,module,exports){
+},{"../../internal/symbol/iterator":76,"../OuterSubscriber":14,"../Subscriber":19,"../util/isArray":88,"../util/subscribeToResult":106,"./fromArray":31}],49:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mergeAll_1 = require("./mergeAll");
@@ -20305,7 +20261,7 @@ function concatAll() {
 }
 exports.concatAll = concatAll;
 
-},{"./mergeAll":54}],51:[function(require,module,exports){
+},{"./mergeAll":53}],50:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -20363,7 +20319,7 @@ var FilterSubscriber = (function (_super) {
     return FilterSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":20}],52:[function(require,module,exports){
+},{"../Subscriber":19}],51:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -20560,7 +20516,7 @@ var InnerRefCountSubscription = (function (_super) {
     return InnerRefCountSubscription;
 }(Subscription_1.Subscription));
 
-},{"../Observable":13,"../Subject":18,"../Subscriber":20,"../Subscription":21}],53:[function(require,module,exports){
+},{"../Observable":12,"../Subject":17,"../Subscriber":19,"../Subscription":20}],52:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -20620,7 +20576,7 @@ var MapSubscriber = (function (_super) {
     return MapSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":20}],54:[function(require,module,exports){
+},{"../Subscriber":19}],53:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mergeMap_1 = require("./mergeMap");
@@ -20631,7 +20587,7 @@ function mergeAll(concurrent) {
 }
 exports.mergeAll = mergeAll;
 
-},{"../util/identity":88,"./mergeMap":55}],55:[function(require,module,exports){
+},{"../util/identity":87,"./mergeMap":54}],54:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -20744,7 +20700,7 @@ var MergeMapSubscriber = (function (_super) {
 exports.MergeMapSubscriber = MergeMapSubscriber;
 exports.flatMap = mergeMap;
 
-},{"../InnerSubscriber":11,"../OuterSubscriber":15,"../observable/from":31,"../util/subscribeToResult":107,"./map":53}],56:[function(require,module,exports){
+},{"../InnerSubscriber":10,"../OuterSubscriber":14,"../observable/from":30,"../util/subscribeToResult":106,"./map":52}],55:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -20822,7 +20778,7 @@ var ObserveOnMessage = (function () {
 }());
 exports.ObserveOnMessage = ObserveOnMessage;
 
-},{"../Notification":12,"../Subscriber":20}],57:[function(require,module,exports){
+},{"../Notification":11,"../Subscriber":19}],56:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -20895,7 +20851,7 @@ var RefCountSubscriber = (function (_super) {
     return RefCountSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":20}],58:[function(require,module,exports){
+},{"../Subscriber":19}],57:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -20919,7 +20875,7 @@ function scheduleArray(input, scheduler) {
 }
 exports.scheduleArray = scheduleArray;
 
-},{"../Observable":13,"../Subscription":21}],59:[function(require,module,exports){
+},{"../Observable":12,"../Subscription":20}],58:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -20968,7 +20924,7 @@ function scheduleIterable(input, scheduler) {
 }
 exports.scheduleIterable = scheduleIterable;
 
-},{"../Observable":13,"../Subscription":21,"../symbol/iterator":77}],60:[function(require,module,exports){
+},{"../Observable":12,"../Subscription":20,"../symbol/iterator":76}],59:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -20990,7 +20946,7 @@ function scheduleObservable(input, scheduler) {
 }
 exports.scheduleObservable = scheduleObservable;
 
-},{"../Observable":13,"../Subscription":21,"../symbol/observable":78}],61:[function(require,module,exports){
+},{"../Observable":12,"../Subscription":20,"../symbol/observable":77}],60:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -21011,7 +20967,7 @@ function schedulePromise(input, scheduler) {
 }
 exports.schedulePromise = schedulePromise;
 
-},{"../Observable":13,"../Subscription":21}],62:[function(require,module,exports){
+},{"../Observable":12,"../Subscription":20}],61:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var scheduleObservable_1 = require("./scheduleObservable");
@@ -21041,7 +20997,7 @@ function scheduled(input, scheduler) {
 }
 exports.scheduled = scheduled;
 
-},{"../util/isArrayLike":90,"../util/isInteropObservable":92,"../util/isIterable":93,"../util/isPromise":97,"./scheduleArray":58,"./scheduleIterable":59,"./scheduleObservable":60,"./schedulePromise":61}],63:[function(require,module,exports){
+},{"../util/isArrayLike":89,"../util/isInteropObservable":91,"../util/isIterable":92,"../util/isPromise":96,"./scheduleArray":57,"./scheduleIterable":58,"./scheduleObservable":59,"./schedulePromise":60}],62:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -21071,7 +21027,7 @@ var Action = (function (_super) {
 }(Subscription_1.Subscription));
 exports.Action = Action;
 
-},{"../Subscription":21}],64:[function(require,module,exports){
+},{"../Subscription":20}],63:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -21119,7 +21075,7 @@ var AnimationFrameAction = (function (_super) {
 }(AsyncAction_1.AsyncAction));
 exports.AnimationFrameAction = AnimationFrameAction;
 
-},{"./AsyncAction":68}],65:[function(require,module,exports){
+},{"./AsyncAction":67}],64:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -21166,7 +21122,7 @@ var AnimationFrameScheduler = (function (_super) {
 }(AsyncScheduler_1.AsyncScheduler));
 exports.AnimationFrameScheduler = AnimationFrameScheduler;
 
-},{"./AsyncScheduler":69}],66:[function(require,module,exports){
+},{"./AsyncScheduler":68}],65:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -21215,7 +21171,7 @@ var AsapAction = (function (_super) {
 }(AsyncAction_1.AsyncAction));
 exports.AsapAction = AsapAction;
 
-},{"../util/Immediate":82,"./AsyncAction":68}],67:[function(require,module,exports){
+},{"../util/Immediate":81,"./AsyncAction":67}],66:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -21262,7 +21218,7 @@ var AsapScheduler = (function (_super) {
 }(AsyncScheduler_1.AsyncScheduler));
 exports.AsapScheduler = AsapScheduler;
 
-},{"./AsyncScheduler":69}],68:[function(require,module,exports){
+},{"./AsyncScheduler":68}],67:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -21365,7 +21321,7 @@ var AsyncAction = (function (_super) {
 }(Action_1.Action));
 exports.AsyncAction = AsyncAction;
 
-},{"./Action":63}],69:[function(require,module,exports){
+},{"./Action":62}],68:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -21433,7 +21389,7 @@ var AsyncScheduler = (function (_super) {
 }(Scheduler_1.Scheduler));
 exports.AsyncScheduler = AsyncScheduler;
 
-},{"../Scheduler":17}],70:[function(require,module,exports){
+},{"../Scheduler":16}],69:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -21484,7 +21440,7 @@ var QueueAction = (function (_super) {
 }(AsyncAction_1.AsyncAction));
 exports.QueueAction = QueueAction;
 
-},{"./AsyncAction":68}],71:[function(require,module,exports){
+},{"./AsyncAction":67}],70:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -21510,7 +21466,7 @@ var QueueScheduler = (function (_super) {
 }(AsyncScheduler_1.AsyncScheduler));
 exports.QueueScheduler = QueueScheduler;
 
-},{"./AsyncScheduler":69}],72:[function(require,module,exports){
+},{"./AsyncScheduler":68}],71:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -21622,7 +21578,7 @@ var VirtualAction = (function (_super) {
 }(AsyncAction_1.AsyncAction));
 exports.VirtualAction = VirtualAction;
 
-},{"./AsyncAction":68,"./AsyncScheduler":69}],73:[function(require,module,exports){
+},{"./AsyncAction":67,"./AsyncScheduler":68}],72:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var AnimationFrameAction_1 = require("./AnimationFrameAction");
@@ -21630,7 +21586,7 @@ var AnimationFrameScheduler_1 = require("./AnimationFrameScheduler");
 exports.animationFrameScheduler = new AnimationFrameScheduler_1.AnimationFrameScheduler(AnimationFrameAction_1.AnimationFrameAction);
 exports.animationFrame = exports.animationFrameScheduler;
 
-},{"./AnimationFrameAction":64,"./AnimationFrameScheduler":65}],74:[function(require,module,exports){
+},{"./AnimationFrameAction":63,"./AnimationFrameScheduler":64}],73:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var AsapAction_1 = require("./AsapAction");
@@ -21638,7 +21594,7 @@ var AsapScheduler_1 = require("./AsapScheduler");
 exports.asapScheduler = new AsapScheduler_1.AsapScheduler(AsapAction_1.AsapAction);
 exports.asap = exports.asapScheduler;
 
-},{"./AsapAction":66,"./AsapScheduler":67}],75:[function(require,module,exports){
+},{"./AsapAction":65,"./AsapScheduler":66}],74:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var AsyncAction_1 = require("./AsyncAction");
@@ -21646,7 +21602,7 @@ var AsyncScheduler_1 = require("./AsyncScheduler");
 exports.asyncScheduler = new AsyncScheduler_1.AsyncScheduler(AsyncAction_1.AsyncAction);
 exports.async = exports.asyncScheduler;
 
-},{"./AsyncAction":68,"./AsyncScheduler":69}],76:[function(require,module,exports){
+},{"./AsyncAction":67,"./AsyncScheduler":68}],75:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var QueueAction_1 = require("./QueueAction");
@@ -21654,7 +21610,7 @@ var QueueScheduler_1 = require("./QueueScheduler");
 exports.queueScheduler = new QueueScheduler_1.QueueScheduler(QueueAction_1.QueueAction);
 exports.queue = exports.queueScheduler;
 
-},{"./QueueAction":70,"./QueueScheduler":71}],77:[function(require,module,exports){
+},{"./QueueAction":69,"./QueueScheduler":70}],76:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function getSymbolIterator() {
@@ -21667,12 +21623,12 @@ exports.getSymbolIterator = getSymbolIterator;
 exports.iterator = getSymbolIterator();
 exports.$$iterator = exports.iterator;
 
-},{}],78:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.observable = (function () { return typeof Symbol === 'function' && Symbol.observable || '@@observable'; })();
 
-},{}],79:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rxSubscriber = (function () {
@@ -21682,7 +21638,7 @@ exports.rxSubscriber = (function () {
 })();
 exports.$$rxSubscriber = exports.rxSubscriber;
 
-},{}],80:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ArgumentOutOfRangeErrorImpl = (function () {
@@ -21697,7 +21653,7 @@ var ArgumentOutOfRangeErrorImpl = (function () {
 })();
 exports.ArgumentOutOfRangeError = ArgumentOutOfRangeErrorImpl;
 
-},{}],81:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var EmptyErrorImpl = (function () {
@@ -21712,7 +21668,7 @@ var EmptyErrorImpl = (function () {
 })();
 exports.EmptyError = EmptyErrorImpl;
 
-},{}],82:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var nextHandle = 1;
@@ -21742,7 +21698,7 @@ exports.TestTools = {
     }
 };
 
-},{}],83:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ObjectUnsubscribedErrorImpl = (function () {
@@ -21757,7 +21713,7 @@ var ObjectUnsubscribedErrorImpl = (function () {
 })();
 exports.ObjectUnsubscribedError = ObjectUnsubscribedErrorImpl;
 
-},{}],84:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var TimeoutErrorImpl = (function () {
@@ -21772,7 +21728,7 @@ var TimeoutErrorImpl = (function () {
 })();
 exports.TimeoutError = TimeoutErrorImpl;
 
-},{}],85:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var UnsubscriptionErrorImpl = (function () {
@@ -21789,7 +21745,7 @@ var UnsubscriptionErrorImpl = (function () {
 })();
 exports.UnsubscriptionError = UnsubscriptionErrorImpl;
 
-},{}],86:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Subscriber_1 = require("../Subscriber");
@@ -21810,7 +21766,7 @@ function canReportError(observer) {
 }
 exports.canReportError = canReportError;
 
-},{"../Subscriber":20}],87:[function(require,module,exports){
+},{"../Subscriber":19}],86:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function hostReportError(err) {
@@ -21818,7 +21774,7 @@ function hostReportError(err) {
 }
 exports.hostReportError = hostReportError;
 
-},{}],88:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function identity(x) {
@@ -21826,17 +21782,17 @@ function identity(x) {
 }
 exports.identity = identity;
 
-},{}],89:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isArray = (function () { return Array.isArray || (function (x) { return x && typeof x.length === 'number'; }); })();
 
-},{}],90:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isArrayLike = (function (x) { return x && typeof x.length === 'number' && typeof x !== 'function'; });
 
-},{}],91:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function isFunction(x) {
@@ -21844,7 +21800,7 @@ function isFunction(x) {
 }
 exports.isFunction = isFunction;
 
-},{}],92:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var observable_1 = require("../symbol/observable");
@@ -21853,7 +21809,7 @@ function isInteropObservable(input) {
 }
 exports.isInteropObservable = isInteropObservable;
 
-},{"../symbol/observable":78}],93:[function(require,module,exports){
+},{"../symbol/observable":77}],92:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var iterator_1 = require("../symbol/iterator");
@@ -21862,7 +21818,7 @@ function isIterable(input) {
 }
 exports.isIterable = isIterable;
 
-},{"../symbol/iterator":77}],94:[function(require,module,exports){
+},{"../symbol/iterator":76}],93:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var isArray_1 = require("./isArray");
@@ -21871,7 +21827,7 @@ function isNumeric(val) {
 }
 exports.isNumeric = isNumeric;
 
-},{"./isArray":89}],95:[function(require,module,exports){
+},{"./isArray":88}],94:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function isObject(x) {
@@ -21879,7 +21835,7 @@ function isObject(x) {
 }
 exports.isObject = isObject;
 
-},{}],96:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Observable_1 = require("../Observable");
@@ -21888,7 +21844,7 @@ function isObservable(obj) {
 }
 exports.isObservable = isObservable;
 
-},{"../Observable":13}],97:[function(require,module,exports){
+},{"../Observable":12}],96:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function isPromise(value) {
@@ -21896,7 +21852,7 @@ function isPromise(value) {
 }
 exports.isPromise = isPromise;
 
-},{}],98:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function isScheduler(value) {
@@ -21904,13 +21860,13 @@ function isScheduler(value) {
 }
 exports.isScheduler = isScheduler;
 
-},{}],99:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function noop() { }
 exports.noop = noop;
 
-},{}],100:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function not(pred, thisArg) {
@@ -21923,7 +21879,7 @@ function not(pred, thisArg) {
 }
 exports.not = not;
 
-},{}],101:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var identity_1 = require("./identity");
@@ -21948,7 +21904,7 @@ function pipeFromArray(fns) {
 }
 exports.pipeFromArray = pipeFromArray;
 
-},{"./identity":88}],102:[function(require,module,exports){
+},{"./identity":87}],101:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var subscribeToArray_1 = require("./subscribeToArray");
@@ -21981,7 +21937,7 @@ exports.subscribeTo = function (result) {
     }
 };
 
-},{"../symbol/iterator":77,"../symbol/observable":78,"./isArrayLike":90,"./isObject":95,"./isPromise":97,"./subscribeToArray":103,"./subscribeToIterable":104,"./subscribeToObservable":105,"./subscribeToPromise":106}],103:[function(require,module,exports){
+},{"../symbol/iterator":76,"../symbol/observable":77,"./isArrayLike":89,"./isObject":94,"./isPromise":96,"./subscribeToArray":102,"./subscribeToIterable":103,"./subscribeToObservable":104,"./subscribeToPromise":105}],102:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.subscribeToArray = function (array) { return function (subscriber) {
@@ -21991,7 +21947,7 @@ exports.subscribeToArray = function (array) { return function (subscriber) {
     subscriber.complete();
 }; };
 
-},{}],104:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var iterator_1 = require("../symbol/iterator");
@@ -22025,7 +21981,7 @@ exports.subscribeToIterable = function (iterable) { return function (subscriber)
     return subscriber;
 }; };
 
-},{"../symbol/iterator":77}],105:[function(require,module,exports){
+},{"../symbol/iterator":76}],104:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var observable_1 = require("../symbol/observable");
@@ -22039,7 +21995,7 @@ exports.subscribeToObservable = function (obj) { return function (subscriber) {
     }
 }; };
 
-},{"../symbol/observable":78}],106:[function(require,module,exports){
+},{"../symbol/observable":77}],105:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var hostReportError_1 = require("./hostReportError");
@@ -22054,7 +22010,7 @@ exports.subscribeToPromise = function (promise) { return function (subscriber) {
     return subscriber;
 }; };
 
-},{"./hostReportError":87}],107:[function(require,module,exports){
+},{"./hostReportError":86}],106:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var InnerSubscriber_1 = require("../InnerSubscriber");
@@ -22072,7 +22028,7 @@ function subscribeToResult(outerSubscriber, result, outerValue, outerIndex, inne
 }
 exports.subscribeToResult = subscribeToResult;
 
-},{"../InnerSubscriber":11,"../Observable":13,"./subscribeTo":102}],108:[function(require,module,exports){
+},{"../InnerSubscriber":10,"../Observable":12,"./subscribeTo":101}],107:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Subscriber_1 = require("../Subscriber");
@@ -22094,7 +22050,7 @@ function toSubscriber(nextOrObserver, error, complete) {
 }
 exports.toSubscriber = toSubscriber;
 
-},{"../Observer":14,"../Subscriber":20,"../symbol/rxSubscriber":79}],109:[function(require,module,exports){
+},{"../Observer":13,"../Subscriber":19,"../symbol/rxSubscriber":78}],108:[function(require,module,exports){
 /**
  * Convert array of 16 byte values to UUID string format of the form:
  * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
@@ -22122,7 +22078,7 @@ function bytesToUuid(buf, offset) {
 
 module.exports = bytesToUuid;
 
-},{}],110:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 // Unique ID creation requires a high quality random # generator.  In the
 // browser this is a little complicated due to unknown quality of Math.random()
 // and inconsistent support for the `crypto` API.  We do the best we can via
@@ -22158,7 +22114,7 @@ if (getRandomValues) {
   };
 }
 
-},{}],111:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 var rng = require('./lib/rng');
 var bytesToUuid = require('./lib/bytesToUuid');
 
@@ -22189,4 +22145,56 @@ function v4(options, buf, offset) {
 
 module.exports = v4;
 
-},{"./lib/bytesToUuid":109,"./lib/rng":110}]},{},[1]);
+},{"./lib/bytesToUuid":108,"./lib/rng":109}],111:[function(require,module,exports){
+// IMPORTANT - if you make changes here, always run: yarn build
+// The file observer-bundle.js is used in your browser, not this file!
+// See https://github.com/browserify/browserify for more info.
+
+const socket = new WebSocket('ws://localhost:3333/ws');
+const socketId = 'web-' + new Date().getTime();
+
+const ReSynkd = require('ReSynkd').default;
+const resynkd = new ReSynkd();
+
+socket.addEventListener('message', (event) => {
+	let message = event.data;
+
+	let consumed = resynkd.message(message, socket.send.bind(socket));
+
+	if (!consumed) {
+		message = JSON.parse(message);
+		console.log('[WS] Web Client received non-resynkd message:', message);
+		if (message.registered === true) {
+			resynkd.subscribe({
+				socketId: socketId,
+				subjectId: 'serverSubject',
+				send: socket.send.bind(socket),
+				observer: {
+					next: (value) => {   // * required!
+						console.log('[ReSynkd] RECEIVED [serverSubject] next message:', value);
+					},
+					error: (err) => {   // * optional
+						console.error('[ReSynkd] RECEIVED [serverSubject] error', err);
+					},
+					complete: () => {   // * optional
+						console.error('[ReSynkd] RECEIVED [serverSubject] completed.');
+					},
+				},
+			});
+		}
+	}
+});
+
+socket.addEventListener('open', (event) => {
+	console.log('[WS] Web Client connected.');
+	socket.send(JSON.stringify({
+			socketId: socketId,
+			type: 'register',
+			msg: 'Hello Server from web.',
+		}),
+	);
+});
+socket.addEventListener('closed', (event) => socket.send('Closed?'));
+socket.addEventListener('error', (event) => socket.send('Error?'));
+
+},{"ReSynkd":1}]},{},[111]);

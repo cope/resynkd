@@ -4,9 +4,11 @@
 	"description": "ReSynkd demo web client",
 	"author": "Predrag Stojadinovic",
 	"license": "UNLICENSE",
-	"main": "index.html",
+	"main": "observer.html",
 	"scripts": {
-		"build": "browserify index.js > browserified.js"
+		"build": "yarn o && yarn s",
+		"o": "browserify observer.js > observer-bundle.js",
+		"s": "browserify observable.js > observable-bundle.js"
 	},
 	"dependencies": {
 		"browserify": "^16.5.1",
