@@ -1,5 +1,5 @@
 {
-	"name": "ReSynkd",
+	"name": "resynkd",
 	"version": "1.0.0",
 	"description": "Observable pattern through WebSockets",
 	"engines": {
