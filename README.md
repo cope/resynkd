@@ -1,5 +1,5 @@
 <a href="https://cope.github.io/resynkd/">
-  <img alt="resynkd" src="https://raw.githubusercontent.com/cope/resynkd/master/logo.jpg" width="100">
+  <img alt="resynkd" src="https://raw.githubusercontent.com/cope/resynkd/master/logo.png" width="100">
 </a>
 
 # resynkd
