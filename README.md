@@ -2,7 +2,7 @@
   <img alt="resynkd" src="https://raw.githubusercontent.com/cope/resynkd/master/logo.jpg" width="100">
 </a>
 
-# resynkd
+# ReSynkd
 [![build status](https://img.shields.io/travis/cope/resynkd.svg?branch=master)](https://travis-ci.org/cope/resynkd)
 [![codacy](https://img.shields.io/codacy/grade/688be689cad640b89d180b8fee850df7.svg)](https://www.codacy.com/project/cope/resynkd/dashboard)
 [![coverage](https://img.shields.io/coveralls/github/cope/resynkd/master.svg)](https://coveralls.io/github/cope/resynkd?branch=master)

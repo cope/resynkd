@@ -1,7 +1,7 @@
 {
-	"name": "resynkd",
-	"version": "0.9.9",
-	"description": "resynkd",
+	"name": "ReSynkd",
+	"version": "1.0.0",
+	"description": "Observable pattern through WebSockets",
 	"engines": {
 		"node": ">=10"
 	},
