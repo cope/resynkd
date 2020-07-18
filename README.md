@@ -27,6 +27,9 @@ The typedoc documentation is available at https://cope.github.io/resynkd/docs/
 
 See the `./demo/` folder in this repo.
 
+Watch the demo video:<br />
+[![ReSynkd Demo 1](http://img.youtube.com/vi/6Leayd57xr4/0.jpg)](http://www.youtube.com/watch?v=6Leayd57xr4 "ReSynkd Demo 1")
+https://youtu.be/6Leayd57xr4
 ### Usage
 
 Keep in mind that the `socketsSendMethod` is a placeholder for whatever the `send` method is in the websocket implementation used,
@@ -117,3 +120,10 @@ socket.onmessage = (e) => {
 	if(!consumed) console.log(message); // ...handle non-resynkd messages...
 };
 ```
+
+### TODO
+
+See the [Kanban board](https://github.com/cope/resynkd/projects/1)
+
+* Peer-to-Peer (client-to-client) subscriptions
+* Observables broadcast their subjects<br/>_- so that  observers know what they can subscribe to_

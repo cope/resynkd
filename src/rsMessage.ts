@@ -1,6 +1,6 @@
 'use strict';
 
-import * as uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 import { RsMessageType, RsMethod } from './resynkd.types';
 
 export { RsMessageType };

@@ -1,9 +1,9 @@
 {
 	"name": "resynkd",
-	"version": "0.9.8",
+	"version": "0.9.9",
 	"description": "resynkd",
 	"engines": {
-		"node": ">=8.17"
+		"node": ">=10"
 	},
 	"main": "./lib/resynkd.js",
 	"types": "./lib/resynkd.d.ts",
@@ -62,29 +62,29 @@
 	},
 	"homepage": "https://github.com/cope/resynkd#readme",
 	"dependencies": {
-		"@types/lodash": "^4.14.149",
-		"@types/mathjs": "^6.0.2",
-		"@types/uuid": "^3.4.6",
+		"@types/lodash": "^4.14.157",
+		"@types/mathjs": "^6.0.5",
+		"@types/uuid": "^8.0.0",
 		"lodash": "^4.17.19",
-		"rxjs": "^6.5.4",
-		"uuid": "^3.4.0"
+		"rxjs": "^6.6.0",
+		"uuid": "^8.2.0"
 	},
 	"devDependencies": {
-		"@types/chai": "^4.2.7",
-		"@types/mocha": "^5.2.7",
+		"@types/chai": "^4.2.11",
+		"@types/mocha": "^8.0.0",
 		"chai": "^4.2.0",
-		"coveralls": "^3.0.9",
-		"mocha": "^7.0.0",
-		"nyc": "^15.0.0",
-		"prettier": "^1.19.1",
+		"coveralls": "^3.1.0",
+		"mocha": "^8.0.1",
+		"nyc": "^15.1.0",
+		"prettier": "^2.0.5",
 		"sonarjs": "^1.0.0",
-		"source-map-support": "^0.5.16",
-		"ts-node": "^8.5.4",
-		"tslint": "^6.0.0",
+		"source-map-support": "^0.5.19",
+		"ts-node": "^8.10.2",
+		"tslint": "^6.1.2",
 		"tslint-config-prettier": "^1.18.0",
-		"tslint-etc": "^1.10.0",
+		"tslint-etc": "^1.13.0",
 		"tslint-no-unused-expression-chai": "^0.1.4",
-		"typedoc": "^0.15.6",
-		"typescript": "^3.7.4"
+		"typedoc": "^0.17.8",
+		"typescript": "^3.9.7"
 	}
 }
