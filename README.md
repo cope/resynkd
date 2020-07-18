@@ -28,7 +28,7 @@ The typedoc documentation is available at https://cope.github.io/resynkd/docs/
 See the `./demo/` folder in this repo.
 
 Watch the demo video:<br />
-[![ReSynkd Demo 1](https://raw.githubusercontent.com/cope/resynkd/master/resynkd.png)](http://stojadinovic.net/2020/07/18/resynkd-demo-1/)
+[<img src="https://raw.githubusercontent.com/cope/resynkd/master/resynkd.png" width="400" />](http://stojadinovic.net/2020/07/18/resynkd-demo-1/)
 
 ### Usage
 
