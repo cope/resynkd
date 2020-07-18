@@ -8,7 +8,6 @@
 [![coverage](https://img.shields.io/coveralls/github/cope/resynkd/master.svg)](https://coveralls.io/github/cope/resynkd?branch=master)
 [![dependencies](https://david-dm.org/cope/resynkd.svg)](https://www.npmjs.com/package/resynkd)
 [![npm](https://img.shields.io/npm/dt/resynkd.svg)](https://www.npmjs.com/package/resynkd)
-[![Greenkeeper badge](https://badges.greenkeeper.io/cope/resynkd.svg)](https://greenkeeper.io/)
 
 Observable pattern through WebSockets.
 
@@ -16,7 +15,8 @@ Observable pattern through WebSockets.
 
 ReSynkd puts together the amazing [RxJS library](https://rxjs.dev) and the [WebSocket protocol](https://en.wikipedia.org/wiki/WebSocket).
 
-Although [RxJS](https://rxjs.dev) provides the [WebSocketSubject](https://rxjs.dev/api/webSocket/WebSocketSubject) class, it seems that this class allows only peer-to-peer observables.
+Although [RxJS](https://rxjs.dev) provides the [WebSocketSubject](https://rxjs.dev/api/webSocket/WebSocketSubject) class,
+it seems that anyone can subscribe to but also send through the same webSocketSubject, which I did not like.
 I wanted a way to put an Observable on the server and subscribe to it from the clients, but also vice versa.
 
 ### Documentation
